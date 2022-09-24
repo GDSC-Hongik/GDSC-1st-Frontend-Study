@@ -91,7 +91,7 @@
   * Test: 테스트 코드, 리펙토링 테스트 코드 추가
   * Chore: 빌드 업무 수정, 패키지 매니저 수정
 ```
-* 예시: git commit -m "[Feat(해당 파일): OO 기능 추가]"
+* 예시: `git commit -m "[Feat(해당 파일): OO 기능 추가]"`
 
 ### ✍🏻 README.md 파일 작성하기
 
