@@ -4,58 +4,33 @@
 ├─ GDSC-1st-Frontend-Study
 │     │
 │     ├─ eugene028 (dir)
-│     │     │ 
-│     │     ├─  React를 위한 Javascript (dir)
-│     │     │    ├─ README.md // 개인 기술 블로그 링크 업로드
-|     |     |    ├─ index.html
-|     |     |    ├─ script.js
-|     |     |    └─ style.css
 │     │     │
-│     │     ├─  React 기본기 (dir)
-│     │     │    ├─ README.md // 개인 기술 블로그 링크 업로드
+│     │     ├─  과제 실습 (dir)
 │     │     │    ├─ public (dir)
 │     │     │    ├─ src (dir)
 |     |     |    ├─ .gitignore
 |     |     |    ├─ package.json
 |     |     |    └─ package-lock.json
 │     │     │
-│     │     ├─  React로 TODO앱 만들기 (dir)
-│     │     │    └─ .. 이하 동일
-│     │     │
-│     │     ├─  중간고사 기간 과제 리팩토링 (dir)
-│     │     │    └─ .. 이하 동일
-│     │     │
-│     │     │
-│     │     └─ API에 대하여 이해하기 (dir)
-│     │          └─ README.md
-│     │ 
+│     │     └─  WIL (dir)
+│     │          ├─ WEEK1.md
+│     │          ├─ WEEK2.md
+|     |          └─ ...
+|     |
 │     ├─ 9yujin (dir)
-│     │     │ 
-│     │     ├─  React를 위한 Javascript (dir)
-│     │     │    ├─ README.md // 개인 기술 블로그 링크 업로드
-|     |     |    ├─ index.html
-|     |     |    ├─ script.js
-|     |     |    └─ style.css
 │     │     │
-│     │     ├─  React 기본기 (dir)
-│     │     │    ├─ README.md // 개인 기술 블로그 링크 업로드
+│     │     ├─  과제 실습 (dir)
 │     │     │    ├─ public (dir)
 │     │     │    ├─ src (dir)
 |     |     |    ├─ .gitignore
 |     |     |    ├─ package.json
 |     |     |    └─ package-lock.json
 │     │     │
-│     │     ├─  React로 TODO앱 만들기 (dir)
-│     │     │    └─ .. 이하 동일
-│     │     │
-│     │     ├─  중간고사 기간 과제 리팩토링 (dir)
-│     │     │    └─ .. 이하 동일
-│     │     │
-│     │     │
-│     │     └─ API에 대하여 이해하기 (dir)
-│     │          └─ README.md
-│     │ 
-│     │ 
+│     │     └─  WIL (dir)
+│     │          ├─ WEEK1.md
+│     │          ├─ WEEK2.md
+|     |          └─ ...
+│     │
 ```
 폴더 제출 형식을 이해해주세요.
 
@@ -72,9 +47,9 @@
 ### 🏡 작업공간 생성
 * GDSC-1st-Frontend-Study (프로젝트 루트 디렉토리)
   * 본인 github 아이디명의 디렉토리를 생성해주세요
-* 해당 주차 디렉토리 생성 (과제 공지 주제명으로 해주세요!)
-  *리액트 소스코드 ...
-* Readme에는 해당 주차의 학습을 정리한 자신의 기술 블로그 링크 달아놓기! 
+    * 해당 주차 디렉토리 생성 (과제 공지 주제명으로 해주세요!)
+        * 과제 실습, WIL 디렉토리 생성
+* `WEEK.md`에는 해당 주차의 학습을 정리한 자신의 기술 블로그 링크 달아놓기! 
 
 | 본인 github 아이디명의 디렉토리부터 만들고 시작하시면 됩니다! 😊
 
