@@ -5,13 +5,23 @@ const todoInput = todoForm.querySelector("input");
 //const todoInput = doucment.querySelector("#todo-form input");
 const todoList = document.querySelector("#todo-list");
 
+function deleteToDo(event) {
+    const li = event.target.parentElement; //target은 button이고 button의 parent는 li
+    li.remove();
+}
+
 function paintToDo(newTodo) { //Adding ToDos
     //console.log(newTodo);
     const li = document.createElement("li");
     const span = document.createElement("span");
-    li.appendChild(span); //li 안에 span 넣기
     span.innerText = newTodo;
-    todoList.appendChild(li);
+
+    const button = document.createElement("button");
+    button.innerText = "완료";
+    button.addEventListener("click", deleteToDo);
+    li.appendChild(span); //li 안에 span 넣기
+    li.appendChild(button); //li 안에 button 넣기
+    todoList.appendChild(li); //todoList 안에 li 넣기
 }
 
 function handleToDoSubmit(event) { //엔터 눌렀을 때
