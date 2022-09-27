@@ -5,12 +5,14 @@ const todoInput = todoForm.querySelector("input");
 //const todoInput = doucment.querySelector("#todo-form input");
 const todoList = document.querySelector("#todo-list");
 
-const toDos = [];
+const TODOS_KEY = "toDos"; // 같은 변수명 반복 사용될 때
+
+let toDos = []; //let : 업데이트 가능
 
 function saveToDos() { // toDos배열의 내용을 localStorage에 넣기
     //localStorage에는 string만 저장 가능(배열 불가능)
     //JSON.stringify()으로 toDos배열 내용을 string으로 만들어서 넣기
-    localStorage.setItem("toDos", JSON.stringify(toDos));
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
 }
 
 function deleteToDo(event) {
@@ -42,4 +44,12 @@ function handleToDoSubmit(event) { //엔터 눌렀을 때
     saveToDos();
 }
 
-todoForm.addEventListener("submit", handleToDoSubmit); 
+todoForm.addEventListener("submit", handleToDoSubmit);
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+if (savedToDos !== null) {
+    const parsedToDos = JSON.parse(savedToDos); //string을 배열 형태로 원상복구
+    toDos = parsedToDos; //이전의 ToDos들 복원하기
+    parsedToDos.forEach(paintToDo);
+}
