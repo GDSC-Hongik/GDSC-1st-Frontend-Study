@@ -17,14 +17,19 @@ function saveToDos() { // toDos배열의 내용을 localStorage에 넣기
 
 function deleteToDo(event) {
     const li = event.target.parentElement; //target은 button이고 button의 parent는 li
+    //console.log(typeof li.id); -> string
     li.remove();
+    //toDo.id는 number이고 li.id는 string이므로 parseInt
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id)); //현재 지우려는 것과 id 다른 것들만 남기기
+    saveToDos();
 }
 
-function paintToDo(newTodo) { //Adding ToDos
+function paintToDo(newTodoObj) { //Adding ToDos
     //console.log(newTodo);
     const li = document.createElement("li");
+    li.id = newTodoObj.id;
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodoObj.text;
 
     const button = document.createElement("button");
     button.innerText = "완료";
@@ -39,8 +44,12 @@ function handleToDoSubmit(event) { //엔터 눌렀을 때
     //console.log(todoInput.value);
     const newTodo = todoInput.value; //값 저장
     todoInput.value = ""; //입력 칸 비우기
-    toDos.push(newTodo);
-    paintToDo(newTodo);
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now(), //localStorage에서의 delete를 위해 id값 지정
+    };
+    toDos.push(newTodoObj);
+    paintToDo(newTodoObj);
     saveToDos();
 }
 
