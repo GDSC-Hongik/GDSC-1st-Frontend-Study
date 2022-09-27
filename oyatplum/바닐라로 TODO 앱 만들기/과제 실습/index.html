@@ -11,16 +11,16 @@
             <section>
                 <h2>Todo List</h2>
                 <input id = "input-text" type = "text" placeholder = "Enter your to do">
-                <button id = "input-button">+</button>
+                <button id = "input-button" onclick = "addTodoList()">+</button>
             </section>
 
             <section class = "todo-section">
-                <h4>TO DO</h4>
+                <h4>TO DO<span id = "todo-count"></span></h4>
                 <ul id = "todo-list"></ul>
             </section>
 
             <section class = "done-section">
-                <h4>DONE</h4>
+                <h4>DONE<span id = "done-count"></span></h4>
                 <ul id = "done-list" ></ul>
             </section>
         </main>
