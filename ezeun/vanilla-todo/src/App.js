@@ -22,6 +22,19 @@ function saveDones() {
     localStorage.setItem(DONES_KEY, JSON.stringify(dones));
 }
 
+function cancelDone(event) { //deleteDone, paintToDo
+    deleteDone(event);
+
+    const li = event.target.parentElement;
+    const newTodoObj = {
+        text: li.querySelector("span").innerText,
+        id: Date.now(), //localStorage에서의 delete를 위해 id값 지정
+    };
+    toDos.push(newTodoObj);
+    paintToDo(newTodoObj);
+    saveToDos();
+}
+
 function deleteDone(event) {
     const li = event.target.parentElement; //target은 button이고 button의 parent는 li
     //console.log(typeof li.id); -> string
@@ -29,18 +42,28 @@ function deleteDone(event) {
     //done.id는 number이고 li.id는 string이므로 parseInt
     dones = dones.filter((done) => done.id !== parseInt(li.id)); //현재 지우려는 것과 id 다른 것들만 남기기
     saveDones();
+    //alert("수고했어요");
 }
 function paintDone(newDoneObj) {
     const li = document.createElement("li");
     li.id = newDoneObj.id;
     const span = document.createElement("span");
     span.innerText = newDoneObj.text;
+    span.style.textDecorationLine = "line-through"; //취소선으로 표시
 
-    const button = document.createElement("button");
-    button.innerText = "삭제";
-    button.addEventListener("click", deleteDone);
+    const button1 = document.createElement("button");
+    button1.innerText = "취소";
+    button1.addEventListener("click", cancelDone); // TODO로 다시 올리기
+    button1.style.backgroundColor = "rgb(176, 178, 104)";
+
+    const button2 = document.createElement("button");
+    button2.innerText = "삭제";
+    button2.style.backgroundColor = "rgb(221, 140, 134)";
+    button2.addEventListener("click", deleteDone); // DONE에서도 완전히 삭제하기
+
     li.appendChild(span); //li 안에 span 넣기
-    li.appendChild(button); //li 안에 button 넣기
+    li.appendChild(button1); //li 안에 button 넣기
+    li.appendChild(button2); //li 안에 button 넣기
     doneList.appendChild(li); //doneList 안에 li 넣기
 }
 
@@ -69,6 +92,7 @@ function paintToDo(newTodoObj) { //Adding ToDos
 
     const button = document.createElement("button");
     button.innerText = "완료";
+    button.style.backgroundColor = "rgb(134, 169, 221)";
     button.addEventListener("click", deleteToDo);
     li.appendChild(span); //li 안에 span 넣기
     li.appendChild(button); //li 안에 button 넣기
