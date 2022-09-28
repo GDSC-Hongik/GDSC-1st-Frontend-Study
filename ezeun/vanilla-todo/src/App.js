@@ -34,7 +34,6 @@ function cancelDone(event) { //deleteDone, paintToDo
     paintToDo(newTodoObj);
     saveToDos();
 }
-
 function deleteDone(event) {
     const li = event.target.parentElement; //target은 button이고 button의 parent는 li
     //console.log(typeof li.id); -> string
@@ -74,6 +73,11 @@ function deleteToDo(event) {
     //toDo.id는 number이고 li.id는 string이므로 parseInt
     toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id)); //현재 지우려는 것과 id 다른 것들만 남기기
     saveToDos();
+    //alert("수고했어요");
+}
+function doneToDo(event) { //TODO에서 없애고 DONE에 추가
+    deleteToDo(event);
+    const li = event.target.parentElement; //target은 button이고 button의 parent는 li
 
     const newDoneObj = {
         text: li.querySelector("span").innerText,
@@ -90,12 +94,19 @@ function paintToDo(newTodoObj) { //Adding ToDos
     const span = document.createElement("span");
     span.innerText = newTodoObj.text;
 
-    const button = document.createElement("button");
-    button.innerText = "완료";
-    button.style.backgroundColor = "rgb(134, 169, 221)";
-    button.addEventListener("click", deleteToDo);
+    const button1 = document.createElement("button");
+    button1.innerText = "완료";
+    button1.style.backgroundColor = "rgb(134, 169, 221)";
+    button1.addEventListener("click", doneToDo);
+
+    const button2 = document.createElement("button");
+    button2.innerText = "삭제";
+    button2.style.backgroundColor = "rgb(221, 140, 134)";
+    button2.addEventListener("click", deleteToDo); // TODO에서 완전히 삭제하기
+
     li.appendChild(span); //li 안에 span 넣기
-    li.appendChild(button); //li 안에 button 넣기
+    li.appendChild(button1); //li 안에 button 넣기
+    li.appendChild(button2); //li 안에 button 넣기
     todoList.appendChild(li); //todoList 안에 li 넣기
 }
 
@@ -131,3 +142,35 @@ if (savedDones !== null) {
     dones = parsedDones;
     parsedDones.forEach(paintDone);
 }
+
+/*
+코드 흐름
+line 132~133>
+submit이나 click 하면 handleToDoSubmit 실행
+
+line 116~130>handleToDoSubmit함수
+입력 값을 TODO에 넣기.
+toDos배열에 저장, paintToDo, saveToDos
+
+line 93~114>paintToDo함수
+완료버튼 누르면 doneToDo,
+삭제버튼 누르면 deleteToDo
+
+line 72~80> deleteToDo함수
+해당 li 삭제하고 toDos배열에서도 삭제
+
+line 81~92> donetoDo함수
+deleteToDo하고 
+dones배열에 저장, paintDone, saveDones
+
+line 49~70> paintDone함수
+취소버튼 누르면 cancelDone,
+삭제버튼 누르면 deleteDone
+
+line 40~48> deleteDone함수
+해당 li삭제하고 dones배열에서도 삭제
+
+line 28~39> cancelDone함수 (<->donetoDo)
+deleteDone하고
+toDos배열에 저장, paintToDo, saveToDos
+*/
