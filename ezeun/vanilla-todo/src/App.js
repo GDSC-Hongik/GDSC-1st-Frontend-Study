@@ -103,14 +103,16 @@ function handleToDoSubmit(event) { //엔터 눌렀을 때
     event.preventDefault(); //페이지 새로고침 방지
     //console.log(todoInput.value);
     const newTodo = todoInput.value; //값 저장
-    todoInput.value = ""; //입력 칸 비우기
-    const newTodoObj = {
-        text: newTodo,
-        id: Date.now(), //localStorage에서의 delete를 위해 id값 지정
-    };
-    toDos.push(newTodoObj);
-    paintToDo(newTodoObj);
-    saveToDos();
+    if (newTodo !== "") {
+        todoInput.value = ""; //입력 칸 비우기
+        const newTodoObj = {
+            text: newTodo,
+            id: Date.now(), //localStorage에서의 delete를 위해 id값 지정
+        };
+        toDos.push(newTodoObj);
+        paintToDo(newTodoObj);
+        saveToDos();
+    }
 }
 
 todoForm.addEventListener("submit", handleToDoSubmit); //엔터로 할 일 추가
