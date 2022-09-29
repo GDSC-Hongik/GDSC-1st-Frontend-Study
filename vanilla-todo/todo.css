@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+ul {
+    padding : 0px;
+    margin-left : 10px;
+}
+.todo-box > li {
+    list-style: none;
+    font-size:18px; 
+    line-height: 35px;
+    background:url(icons/caret-right-fill.svg) no-repeat 0px 50%;  
+    padding-left:35px;
+    margin : 0px;
+}
+
+
+li > button {
+    border : none;
+    background-color: white;
+    color : palevioletred;
+    float: right;
+}
+
+li > span{
+    margin-right : 10px;
+}
+body {
+    width : 100%;
+    padding : 0;
+    margin : 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 250, 251);
+}
+.container{
+    background-color: rgb(255, 255, 255);
+    height : 500px;
+    width : 300px;
+    display: flex;
+    margin-top : 80px;
+    flex-direction: column;
+    padding : 20px 30px 50px;
+    border : 2px outset #ccc;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgb(255, 211, 211);
+}
+.Todotitle {
+    text-align: center;
+}
+.subtitle{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.appendbox{
+    text-align: center;
+}
+
+input[type=text] {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+input[type=submit] {
+    border : 1px solid palevioletred;
+    background-color: white;
+    color : palevioletred;
+    padding : 5px;
+    border-radius: 10px;
+}
+
+.todobox{
+    text-align: left;
+}
+
+
