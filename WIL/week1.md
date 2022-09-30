@@ -13,3 +13,4 @@ https://velog.io/@gene028/Javascript-Truthly-Falsy-%EB%AA%85%EC%8B%9C%EC%A0%81-%
 #### 자바스크립트 함수 깊게 알아보기
 https://velog.io/@gene028/Javascript-%EB%B3%80%EC%88%98-%EC%8B%9D%EB%B3%84%EC%9E%90
 #### React를 위한 함수
+https://velog.io/@gene028/JavaScript-React%EC%97%90%EC%84%9C-%EC%9E%90%EC%A3%BC-%EC%93%B0%EC%9D%B4%EB%8A%94-JS-%ED%95%A8%EC%88%98
