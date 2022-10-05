@@ -1,13 +1,11 @@
 import React from 'react'
 import TodoItem from './TodoItem'
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
   return (
     <>
       <ul className='todo-list'>
-        <TodoItem text='안녕하세요'/>
-        <TodoItem text='안녕하세요'/>
-        <TodoItem text='안녕하세요'/>
+        {todos.map(todo => <TodoItem key={todo.id} text={todo.text}/>)}
       </ul>
     </>
   )
