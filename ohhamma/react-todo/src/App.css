@@ -7,10 +7,25 @@ body {
   flex-direction: column;
   width: 500px;
   height: 700px;
+  
   background: #FEF5ED;
   box-shadow: 3px 4px 9px 5px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
   margin: 0 auto;
   margin-top: 96px;
   margin-bottom: 32px;
+}
+
+.title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 42px;
+  line-height: 51px;
+  /* identical to box height */
+
+  margin-top: 45px;
+  text-align: center;
+
+  color: rgba(65, 60, 88, 0.8);
 }
