@@ -1,3 +1,7 @@
 {
-	"cSpell.words": ["GDSC", "Hongik", "tailwindcss"]
+	"cSpell.words": ["GDSC", "Hongik", "tailwindcss"],
+
+	// prevent warning when using tailwind directives
+	"css.lint.unknownAtRules": "ignore",
+	"scss.lint.unknownAtRules": "ignore"
 }
