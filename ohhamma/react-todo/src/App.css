@@ -37,7 +37,7 @@ form {
 
 input[type=text] {
   width: 300px;
-  height: 40px;
+  height: 38px;
   font-size: 12pt;
   border: 0px;
   border-radius: 15px;
@@ -46,3 +46,22 @@ input[type=text] {
   background: rgba(65, 60, 88, 0.2);
 }
 
+ul {
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 15px 15px 10px;
+  max-width: 315px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+li {
+  color: grey;
+  padding: 7px 0px 7px 7px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid rgba(65, 60, 88, 0.2);
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
