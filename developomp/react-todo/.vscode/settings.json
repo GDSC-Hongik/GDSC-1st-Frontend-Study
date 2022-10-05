@@ -1,5 +1,11 @@
 {
-	"cSpell.words": ["fontawesome", "GDSC", "Hongik", "tailwindcss"],
+	"cSpell.words": [
+		"fontawesome",
+		"fortawesome",
+		"GDSC",
+		"Hongik",
+		"tailwindcss"
+	],
 
 	// prevent warning when using tailwind directives
 	"css.lint.unknownAtRules": "ignore",
