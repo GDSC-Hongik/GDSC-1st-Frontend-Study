@@ -1,0 +1,4 @@
+.list-container {
+	@apply h-full;
+	@apply bg-zinc-200;
+}
