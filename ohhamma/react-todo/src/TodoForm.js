@@ -15,7 +15,7 @@ const TodoForm = ({ onAdd }) => {
 
   return (
     <>
-      <form onSubmit={(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <input
           type='text'
           value={text}
