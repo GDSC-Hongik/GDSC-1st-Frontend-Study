@@ -32,23 +32,27 @@
 |     |          └─ ...
 │     │
 ```
-폴더 제출 형식을 이해해주세요.
+
 
 ### 📤 프로젝트 시작하기
 * Visual Studio Code를 실행하고, 원격저장소를 연결해주세요.
 * `git init` // 원격 저장소 init
 * `git remote -v https://github.com/GDSC-Hongik/GDSC-1st-FrontEnd-Study.git` // 원격 저장소 연결
-* `git pull origin master`
+* `git pull origin main`
 * Visual Studio Code의 terminal에서 자신의 branch로 checkout을 해주세요
     `git checkout origin [본인 github 아이디]`
-* 작업은 해당 본인 branch에서만 진행해주세요 (❌master branch❌)
-   `git branch` : 현재 branch 확인
+* **🚨작업은 해당 본인 branch에서만 진행해주세요.**
+
+   ![image](https://user-images.githubusercontent.com/55226431/192223658-e7ae85a0-404e-41f6-b7bc-8bf92bf9feb5.png)
+본인의 디렉토리, 본인의 branch에서 작업 진행해주시면 됩니다!!
+* `git branch` : 현재 branch 확인
 
 ### 🏡 작업공간 생성
 * GDSC-1st-Frontend-Study (프로젝트 루트 디렉토리)
   * 본인 github 아이디명의 디렉토리를 생성해주세요
-    * 해당 주차 디렉토리 생성 (과제 공지 주제명으로 해주세요!)
-        * 과제 실습, WIL 디렉토리 생성
+    * 과제 실습, WIL 디렉토리 생성
+        * 해당 주차 디렉토리 생성 (과제 공지 주제명으로 해주세요!)
+        
 * `WEEK.md`에는 해당 주차의 학습을 정리한 자신의 기술 블로그 링크 달아놓기! 
 
 | 본인 github 아이디명의 디렉토리부터 만들고 시작하시면 됩니다! 😊
@@ -78,12 +82,12 @@
 
 ### 🙌🏻 Github 레포지토리에 push하기
 
-* 해당 주차의 강의를 모두 듣고 작업을 모두 끝냈다면, 프로젝트 변경 사항을 remote repository(github repository)에 push 합니다
-  * ```git push origin [본인 github 아이디 브랜치 명]``` : git에 등록되어 있는 origin(github repository)에 있는 자신의 branch로 프로젝트의 변경 사항을 반영합니다
+* 해당 주차의 과제를 모두 끝냈다면, 프로젝트 변경 사항을 remote repository(github repository)에 push 합니다
+  * `git push origin [본인 github 아이디 브랜치 명]` : git에 등록되어 있는 origin(github repository)에 있는 자신의 branch로 프로젝트의 변경 사항을 반영합니다
 * push를 완료했다면 스터디 repository에서 pull request를 진행합니다
   * 링크: https://github.com/GDSC-Hongik/GDSC-1st-Frontend-Study/pulls
-* PR(Pull Request)시 메세지 제목은 다음과 같이 ```[1기_OOO] 1주차 미션 제출합니다.``` 라고 적은 후 ```create pull request``` 버튼을 눌러주세요
-* PR : ```base: [master]``` <- ```compare: [본인 github 아이디]```
+* PR(Pull Request)시 메세지 제목은 다음과 같이 `[1기_OOO] 1주차 미션 제출합니다.` 라고 적은 후 `create pull request` 버튼을 눌러주세요
+* PR : `base: [master]` <- `compare: [본인 github 아이디]`
 
 ### 🤝 gitignore 제출 안내 
 * `node_modules` 파일 용량이 너무 큰 관계로, `gitignore`에 꼭 추가하여 `node_modules`를 제외하고 레포지토리에 push해주세요! 
