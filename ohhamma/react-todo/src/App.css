@@ -20,12 +20,29 @@ body {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 1000;
-  font-size: 42px;
+  font-size: 40px;
   line-height: 51px;
   /* identical to box height */
 
   margin-top: 45px;
+  margin-bottom: 25px;
   text-align: center;
 
   color: rgba(65, 60, 88, 0.8);
 }
+
+form {
+  text-align: center;
+}
+
+input[type=text] {
+  width: 300px;
+  height: 40px;
+  font-size: 12pt;
+  border: 0px;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 15px;
+  background: rgba(65, 60, 88, 0.2);
+}
+
