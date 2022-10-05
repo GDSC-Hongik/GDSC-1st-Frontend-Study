@@ -7,10 +7,8 @@ import { nanoid } from "nanoid"
  * Type definitions
  */
 
-export type key = string
-
 export interface TodoList {
-	[key: key]: string
+	[key: string]: string
 }
 
 export interface IGlobalState {
@@ -23,7 +21,11 @@ export type GlobalAction =
 	  }
 	| {
 			type: ActionsEnum.REMOVE_TODO
-			payload: key
+			payload: string
+	  }
+	| {
+			type: ActionsEnum.UPDATE_TODO
+			payload: { key: string; content: string }
 	  }
 
 export interface IGlobalContext {
@@ -34,6 +36,7 @@ export interface IGlobalContext {
 export enum ActionsEnum {
 	ADD_TODO,
 	REMOVE_TODO,
+	UPDATE_TODO,
 }
 
 export enum LocalStorageKey {
@@ -44,8 +47,12 @@ export enum LocalStorageKey {
  * Code starts here
  */
 
+function saveToLocalStorage(todo: any) {
+	window.localStorage.setItem(LocalStorageKey.TODO, JSON.stringify(todo))
+}
+
 const defaultState: IGlobalState = {
-	todo: {},
+	todo: JSON.parse(window.localStorage.getItem(LocalStorageKey.TODO) as any),
 }
 
 export const globalContext = createContext({} as IGlobalContext)
@@ -53,21 +60,24 @@ export const globalContext = createContext({} as IGlobalContext)
 function reducer(state = defaultState, action: GlobalAction): IGlobalState {
 	switch (action.type) {
 		case ActionsEnum.ADD_TODO:
-			state.todo[nanoid()] = "a"
-
-			window.localStorage.setItem(
-				LocalStorageKey.TODO,
-				JSON.stringify(state.todo as any)
-			)
+			state.todo[nanoid()] = ""
 			break
 
 		case ActionsEnum.REMOVE_TODO:
 			delete state.todo[action.payload]
 			break
 
+		case ActionsEnum.UPDATE_TODO:
+			const { key, content } = action.payload
+			state.todo[key] = content
+			console.log(state.todo)
+			break
+
 		default:
 			break
 	}
+
+	saveToLocalStorage(state.todo)
 
 	return { ...state }
 }
