@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Container from './Container';
-import Title from './Title';
+import TodoHead from './TodoHead';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import './App.css';
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <Container>
-      <Title title='⛧ 투두리스트 ⛧' />
+      <TodoHead title='⛧ 투두리스트 ⛧' />
       <TodoForm onAdd={onAdd} />
       <TodoList todos={todos} onDel={onDel} />
     </Container>

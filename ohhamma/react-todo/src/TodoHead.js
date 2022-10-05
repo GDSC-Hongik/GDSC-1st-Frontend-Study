@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Title = ({ title }) => {
+const TodoHead = ({ title }) => {
   return (
     <>
       <div className='title'>{title}</div>
@@ -8,4 +8,4 @@ const Title = ({ title }) => {
   )
 }
 
-export default Title
+export default TodoHead
