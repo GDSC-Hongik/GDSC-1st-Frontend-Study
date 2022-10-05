@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Container from './Container';
 import Title from './Title';
 import TodoForm from './TodoForm';
@@ -6,22 +6,40 @@ import TodoList from './TodoList';
 import './App.css';
 
 function App() {
-  const num = useRef(1)
-  const [todos, setTodos] = useState([]);
+  const TODOS_KEY = "todos";
 
+  const saveTodos = () => {
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+  }
+
+  const loadTodos = () => {
+    const savedTodos = localStorage.getItem(TODOS_KEY);
+    if (savedTodos !== null) {
+      const parsedTodos = JSON.parse(savedTodos);
+      return parsedTodos;
+    }
+    else return [];
+  }
+
+  const [todos, setTodos] = useState(loadTodos());
+  
   const onAdd = (text) => {
     setTodos([
       ...todos,
       {
-        id: num.current++,
+        id: Date.now(),
         text
       }
     ])
   }
 
   const onDel = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id))
+    setTodos(todos.filter(todo => todo.id !== id));
   }
+
+  useEffect(() => {
+    saveTodos();
+  })
 
   return (
     <Container>
