@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Container from './Container';
+import TodoContainer from './TodoContainer';
 import TodoHead from './TodoHead';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
@@ -42,11 +42,11 @@ function App() {
   })
 
   return (
-    <Container>
+    <TodoContainer>
       <TodoHead title='⛧ 투두리스트 ⛧' />
       <TodoForm onAdd={onAdd} />
       <TodoList todos={todos} onDel={onDel} />
-    </Container>
+    </TodoContainer>
   );
 }
 

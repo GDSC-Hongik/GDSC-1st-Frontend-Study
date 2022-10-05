@@ -22,9 +22,8 @@ body {
   font-weight: 1000;
   font-size: 40px;
   line-height: 51px;
-  /* identical to box height */
 
-  margin-top: 45px;
+  margin-top: 40px;
   margin-bottom: 25px;
   text-align: center;
 
@@ -74,16 +73,6 @@ li {
   font-size: 15px;
   display: flex;
   justify-content: space-between;
-}
-
-button {
-  border: none;
-  color: none;
-  padding: 0;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
 }
 
 .button:hover {
