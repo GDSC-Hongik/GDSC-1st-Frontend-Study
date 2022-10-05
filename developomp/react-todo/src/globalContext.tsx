@@ -1,6 +1,6 @@
 import type { Dispatch, ReactNode, ReactElement } from "react"
 
-import { createContext, useEffect, useReducer } from "react"
+import { createContext, useReducer } from "react"
 import { nanoid } from "nanoid"
 
 /**
@@ -53,7 +53,12 @@ export const globalContext = createContext({} as IGlobalContext)
 function reducer(state = defaultState, action: GlobalAction): IGlobalState {
 	switch (action.type) {
 		case ActionsEnum.ADD_TODO:
-			state.todo[nanoid()] = ""
+			state.todo[nanoid()] = "a"
+
+			window.localStorage.setItem(
+				LocalStorageKey.TODO,
+				JSON.stringify(state.todo as any)
+			)
 			break
 
 		case ActionsEnum.REMOVE_TODO:
@@ -69,14 +74,6 @@ function reducer(state = defaultState, action: GlobalAction): IGlobalState {
 
 export function GlobalStore(props: { children: ReactNode }): ReactElement {
 	const [globalState, dispatch] = useReducer(reducer, defaultState)
-
-	// save TODO when it's changed
-	useEffect(() => {
-		window.localStorage.setItem(
-			LocalStorageKey.TODO,
-			JSON.parse(globalState.todo as any)
-		)
-	}, [globalState.todo])
 
 	return (
 		<globalContext.Provider value={{ globalState, dispatch }}>
