@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import TodoContainer from './TodoContainer';
-import TodoHead from './TodoHead';
-import TodoForm from './TodoForm';
-import TodoList from './TodoList';
+import TodoContainer from './pages/Todo/TodoContainer';
+import TodoHead from './pages/Todo/TodoHead';
+import TodoForm from './pages/Todo/TodoForm';
+import TodoList from './pages/Todo/TodoList';
 import './App.css';
+import './pages/Todo/Todo.css';
 
 function App() {
   const TODOS_KEY = "todos";

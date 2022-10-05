@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as DelButton } from './x-solid.svg';
+import { ReactComponent as DelButton } from '../../assets/x-solid.svg';
 
 const TodoItem = ({ id, text, onDel }) => {
   return (
