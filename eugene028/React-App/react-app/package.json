@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD:React-App/react-app/package.json
   "name": "react-app",
+=======
+  "name": "react-todo",
+>>>>>>> beaac2da9d570ac191bc090818b3ff1a83aec3d3:example/react-todo/package.json
   "version": "0.1.0",
   "private": true,
   "dependencies": {
