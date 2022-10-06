@@ -7,7 +7,6 @@ import { ITodoItem } from '../../interfaces/ITodoItem';
 import { todoState } from '../../stores/todo';
 import useBottomSheet from '../../hooks/useBottomSheet';
 import MenuBottomSheet from './MenuBottomSheet';
-import { useState } from 'react';
 
 const TodoItem = ({ item }: { item: ITodoItem }) => {
   const { label, isDone, category, id } = item;
