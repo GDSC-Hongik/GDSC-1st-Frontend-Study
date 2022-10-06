@@ -2,8 +2,9 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
+import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 import { ITodoItem } from '../../interfaces/ITodoItem';
-import { todoSelector, todoState } from '../../stores/todo';
+import { todoState } from '../../stores/todo';
 
 const TodoItem = ({ item }: { item: ITodoItem }) => {
   const { label, isDone, category, id } = item;
@@ -18,10 +19,10 @@ const TodoItem = ({ item }: { item: ITodoItem }) => {
   return (
     <Wrapper>
       <div>
-        <TodoCheck
-          fill={isDone ? category.color : '#DBDDDF'}
-          onClick={handleToggleTodo}
-        />
+        <Check onClick={handleToggleTodo}>
+          <TodoCheck fill={isDone ? category.color : '#DBDDDF'} />
+          {isDone && <CheckIcon className="check" />}
+        </Check>
         <p>{label}</p>
       </div>
       <ThreeDot />
@@ -36,21 +37,31 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 6px 0;
+
   & > div {
     display: flex;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 21px;
     p {
       margin-left: 8px;
     }
-    /* 체크박스 */
-    svg {
-      cursor: pointer;
-    }
   }
+
   /* threedot button */
   & > svg {
     cursor: pointer;
+  }
+`;
+
+const Check = styled.div`
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+
+  /* 체크박스 */
+  svg {
+    cursor: pointer;
+  }
+  .check {
+    position: absolute;
   }
 `;
