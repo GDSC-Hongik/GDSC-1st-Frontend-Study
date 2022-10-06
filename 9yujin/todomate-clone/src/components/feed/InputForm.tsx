@@ -12,11 +12,16 @@ import uuid from 'react-uuid';
 interface InputFormProps {
   category: ICategory;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  initialValue?: string;
 }
 
-const InputForm = ({ category, setOpen }: InputFormProps) => {
+const InputForm = ({
+  category,
+  setOpen,
+  initialValue = '',
+}: InputFormProps) => {
   const setTodo = useSetRecoilState(todoState);
-  const { value, onChange, resetValue } = useInput('');
+  const { value, onChange, resetValue } = useInput(initialValue);
 
   const insertTodo = (inputValue: string) => {
     if (inputValue) {
@@ -27,9 +32,10 @@ const InputForm = ({ category, setOpen }: InputFormProps) => {
         category: category,
       };
       setTodo((prev) => [...prev, newTodo]);
+    } else {
+      setOpen(false);
     }
     resetValue();
-    setOpen(false);
   };
 
   const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
