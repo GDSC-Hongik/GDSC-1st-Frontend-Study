@@ -5,6 +5,7 @@ const initialState: ITodoItem[] = [
   {
     label: '과제 시작하기',
     isDone: true,
+    id: '1',
     category: {
       label: 'GDSC',
       color: '#ae68ec',
@@ -13,6 +14,7 @@ const initialState: ITodoItem[] = [
   {
     label: '과제 완료 토글 구현하기',
     isDone: false,
+    id: '2',
     category: {
       label: 'GDSC',
       color: '#ae68ec',
@@ -21,6 +23,7 @@ const initialState: ITodoItem[] = [
   {
     label: '검정치마 노래듣기',
     isDone: false,
+    id: '3',
     category: {
       label: '할일',
       color: '#dc7b82',

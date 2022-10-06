@@ -6,18 +6,18 @@ import CategoryButton from './CategoryButton';
 import InputForm from './InputForm';
 import TodoItem from './TodoItem';
 
-const FeedItem = ({ category }: { category: ICategory }) => {
+const FeedItemList = ({ category }: { category: ICategory }) => {
   const items = useRecoilValue(todoSelector(category.label));
   const [open, setOpen] = useState<boolean>(false);
   return (
     <>
       <CategoryButton category={category} setOpen={setOpen} />
       {items.map((item) => (
-        <TodoItem item={item} key={item.label} />
+        <TodoItem item={item} key={item.id} />
       ))}
       {open && <InputForm category={category} setOpen={setOpen} />}
     </>
   );
 };
 
-export default FeedItem;
+export default FeedItemList;

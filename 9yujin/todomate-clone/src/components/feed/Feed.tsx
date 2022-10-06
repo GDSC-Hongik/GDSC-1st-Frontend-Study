@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { categoryState } from '../../stores/category';
-import FeedItem from './FeedItem';
+import FeedItemList from './FeedItemList';
 
 const Feed = () => {
   const categories = useRecoilValue(categoryState);
@@ -11,7 +11,7 @@ const Feed = () => {
       <div>Feed</div>
       <List>
         {categories.map((category) => (
-          <FeedItem category={category} key={category.label} />
+          <FeedItemList category={category} key={category.label} />
         ))}
       </List>
     </Wrapper>

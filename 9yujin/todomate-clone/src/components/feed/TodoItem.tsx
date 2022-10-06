@@ -1,4 +1,4 @@
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
@@ -6,14 +6,22 @@ import { ITodoItem } from '../../interfaces/ITodoItem';
 import { todoSelector, todoState } from '../../stores/todo';
 
 const TodoItem = ({ item }: { item: ITodoItem }) => {
-  const { label, isDone, category } = item;
-  const setTodo = useSetRecoilState(todoState);
+  const { label, isDone, category, id } = item;
+  const [todo, setTodo] = useRecoilState(todoState);
 
-  const handleToggleTodo = () => {};
+  const handleToggleTodo = () => {
+    const index = todo.findIndex((v) => v.id === id);
+    const temp = [...todo];
+    temp[index] = { ...temp[index], isDone: !isDone };
+    setTodo(temp);
+  };
   return (
     <Wrapper>
       <div>
-        <TodoCheck fill={isDone ? category.color : '#DBDDDF'} />
+        <TodoCheck
+          fill={isDone ? category.color : '#DBDDDF'}
+          onClick={handleToggleTodo}
+        />
         <p>{label}</p>
       </div>
       <ThreeDot />
@@ -36,5 +44,13 @@ const Wrapper = styled.div`
     p {
       margin-left: 8px;
     }
+    /* 체크박스 */
+    svg {
+      cursor: pointer;
+    }
+  }
+  /* threedot button */
+  & > svg {
+    cursor: pointer;
   }
 `;

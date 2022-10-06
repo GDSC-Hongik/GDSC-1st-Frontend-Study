@@ -7,6 +7,7 @@ import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { todoState } from '../../stores/todo';
 import useInput from '../../hooks/useInput';
+import uuid from 'react-uuid';
 
 interface InputFormProps {
   category: ICategory;
@@ -19,7 +20,12 @@ const InputForm = ({ category, setOpen }: InputFormProps) => {
 
   const insertTodo = (inputValue: string) => {
     if (inputValue) {
-      const newTodo = { label: inputValue, isDone: false, category: category };
+      const newTodo = {
+        label: inputValue,
+        id: uuid(),
+        isDone: false,
+        category: category,
+      };
       setTodo((prev) => [...prev, newTodo]);
     }
     resetValue();
