@@ -1,12 +1,11 @@
-import Button from "./Button";
-import styles from "./App.module.css";
+import React from 'react';
+import Home from './pages/Home';
+import './App.css';
 
 function App() {
   return (
-    <div>
-      <h2 className={styles.title}>Leeju's TODO List</h2>
-      <Button text={"cc"} />
-    </div>
+    // eslint-disable-next-line react/jsx-filename-extension
+    <Home />
   );
 }
 

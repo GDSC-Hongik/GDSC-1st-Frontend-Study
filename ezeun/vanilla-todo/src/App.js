@@ -1,5 +1,3 @@
-//import './App.css';
-
 const todoForm = document.getElementById("todo-form");
 const todoInput = todoForm.querySelector("input");
 //const todoInput = doucment.querySelector("#todo-form input");
