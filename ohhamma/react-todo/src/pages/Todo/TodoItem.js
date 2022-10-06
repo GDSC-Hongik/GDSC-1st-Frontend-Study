@@ -10,7 +10,7 @@ const TodoItem = ({ id, text, onDel }) => {
           className='button'
           onClick={() => onDel(id)}
           width={18} height={18}
-          fill="rgba(65, 60, 88, 0.4)" />
+          fill="rgba(50, 42, 38, 0.5)" />
       </li>
     </>
   )
