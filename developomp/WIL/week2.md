@@ -1,1 +1,1 @@
-[TiStory](https://developomp.tistory.com/2) (비밀번호: `리액트`)
+[TiStory](https://developomp.tistory.com/2) (비밀번호: `react`)
