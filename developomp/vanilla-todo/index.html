@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>developomp's Vanilla TODO app</title>
+
+		<!-- fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Source+Code+Pro&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- FA icons (from https://cdnjs.com/libraries/font-awesome) -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<style>
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+
+				background-color: black;
+				color: white;
+
+				font-family: "Noto Sans KR", sans-serif;
+			}
+
+			hr {
+				width: 100%;
+				opacity: 20%;
+			}
+
+			#todo-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				width: 80%;
+				max-width: 512px;
+
+				padding: 1rem;
+				margin-bottom: 2rem;
+
+				background-color: #333333;
+				font-size: x-large;
+				border-radius: 1rem;
+			}
+
+			#todo-items {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				height: 100%;
+				gap: 0.5rem;
+			}
+
+			.todo-item {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				flex-direction: row;
+			}
+
+			.todo-item > textarea {
+				background-color: transparent;
+				border: none;
+				color: white;
+				font-size: large;
+				resize: none;
+				height: 1.7rem;
+				width: 100%;
+				font-family: "Noto Sans KR", sans-serif;
+			}
+
+			.todo-item > button {
+				background-color: transparent;
+				border: none;
+				color: white;
+				font-size: large;
+			}
+
+			.todo-item button:hover {
+				color: #aaaaaa;
+			}
+
+			.todo-item button:active {
+				color: #777777;
+			}
+
+			#todo-add-new {
+				color: white;
+				font-weight: bolder;
+				border: 0;
+				font-size: x-large;
+				padding: 0.5rem;
+				border-radius: 0.5rem;
+				background-color: transparent;
+				width: 100%;
+			}
+
+			#todo-add-new:hover {
+				background-color: #444444;
+			}
+
+			#todo-add-new:active {
+				background-color: #222222;
+			}
+
+			button {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>developomp's TODO List</h1>
+
+		<div id="todo-container">
+			<div id="todo-items"></div>
+
+			<hr />
+
+			<button id="todo-add-new">
+				<i class="fa-solid fa-plus"></i>
+			</button>
+		</div>
+	</body>
+
+	<script>
+		/**
+		 * Initialization
+		 */
+		let todo = []
+		let todoItemsDOM = document.getElementById("todo-items")
+
+		function addNewTODO(content) {
+			const newTODO = document.createElement("div")
+			newTODO.classList = "todo-item"
+
+			const TODOcontent = document.createElement("textarea")
+			TODOcontent.innerText = content
+			TODOcontent.addEventListener("keyup", (event) => {
+				todo[
+					Array.prototype.slice
+						.call(todoItemsDOM.children)
+						.indexOf(event.target.parentElement)
+				] = event.target.value
+				saveTODO()
+			})
+			newTODO.appendChild(TODOcontent)
+
+			const deleteButton = document.createElement("button")
+			deleteButton.classList = "todo-delete"
+			deleteButton.addEventListener("click", deleteTODO)
+
+			const deleteButtonIcon = document.createElement("i")
+			deleteButtonIcon.classList = "fa-solid fa-x"
+			deleteButton.appendChild(deleteButtonIcon)
+
+			newTODO.appendChild(deleteButton)
+
+			todoItemsDOM.appendChild(newTODO)
+		}
+
+		function saveTODO() {
+			localStorage.setItem("todo", JSON.stringify(todo))
+		}
+
+		function deleteTODO(event) {
+			const todoItem = event.target.parentElement.parentElement
+			if (todoItem.id !== "todo-items") todoItem.remove()
+
+			const index = Array.prototype.slice
+				.call(todoItemsDOM.children)
+				.indexOf(todoItem)
+			todo.splice(index, 1)
+
+			saveTODO()
+		}
+
+		function loadTODO() {
+			// try to fetch TODO
+			todo = JSON.parse(localStorage.getItem("todo")) || todo
+
+			// restore list
+			for (content of todo) addNewTODO(content)
+		}
+
+		/**
+		 * Start
+		 */
+
+		// restore TODO list
+		loadTODO()
+
+		// onClick for new element button
+		document.getElementById("todo-add-new").onclick = () => addNewTODO("")
+	</script>
+</html>
