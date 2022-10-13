@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla Todo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>투두 리스트</h1>
+        <div id="input-box">
+          <input id="input-form" onkeyup="enterPush()" placeholder="할 일을 입력해 주세요." />
+          <button id="input-button" onclick="pushTodo()">+</button>
+        </div>
+      </section>
+      <section>
+        <h4>TO DO <span id="todo-count"></span></h4>
+        <ul class="list" id="todo-list"></ul>
+      </section>
+      <section>
+        <h4>DONE <span id="done-count"></span></h4>
+        <ul class="list" id="done-list"></ul>
+      </section>
+      <div id="toast"></div>
+    </main>
+  </body>
+  <script src="script.js"></script>
+</html>

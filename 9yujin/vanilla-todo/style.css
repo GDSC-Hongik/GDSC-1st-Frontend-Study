@@ -1,0 +1,167 @@
+body {
+  margin: 0px;
+  background-color: #8989bb;
+  background-image: linear-gradient(315deg, #8989bb 0%, #a5a4cb 74%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+main {
+  width: 350px;
+  height: 650px;
+  min-height: 500px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 20px;
+  display: grid;
+  grid-template-rows: 150px 1fr 1fr;
+}
+section {
+  padding: 0 16px;
+}
+h4 {
+  margin: 20px 0px;
+}
+section:not(:last-of-type) {
+  border-bottom: 1px solid #d3d3d3;
+}
+
+#input-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#input-form {
+  width: 85%;
+  height: 60px;
+
+  border: 0px;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  padding: 15px;
+  box-sizing: border-box;
+}
+#input-form:focus {
+  outline: 0;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+#input-button {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+}
+#input-button:hover {
+  background-color: #d3d3d3;
+  transition: all 0.3s ease;
+}
+
+/*
+리스트
+*/
+ul {
+  padding-inline-start: 0px;
+  height: 175px;
+  overflow-y: auto;
+  margin-top: 0px;
+}
+ul::-webkit-scrollbar {
+  width: 5px;
+}
+ul::-webkit-scrollbar-thumb {
+  background-color: #d3d3d3; /*스크롤바의 색상*/
+  border-radius: 2.5px;
+}
+ul::-webkit-scrollbar-track {
+  background-color: none; /*스크롤바 트랙 색상*/
+}
+
+/*
+아이템
+*/
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-content-box {
+  display: flex;
+}
+.radio-button {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid #8989bb;
+  cursor: pointer;
+  transform: translateY(-1px);
+}
+/* 완료된 할일엔 동그라미 채우기 */
+.done > .item-content-box > .radio-button {
+  background-color: #8989bb;
+}
+
+.item-remove {
+  width: 16px;
+  height: 16px;
+  margin: 10px;
+  background-image: url(./assets/delete.svg);
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.item-content {
+  cursor: pointer;
+  line-height: 22px;
+  width: 250px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.todo {
+  position: relative;
+}
+
+.done {
+  color: #c0c0c0;
+  position: relative;
+}
+
+#todo-count,
+#done-count {
+  color: #8989bb;
+}
+
+/*토스트*/
+#toast {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  padding: 15px 20px;
+  transform: translate(-50%, 10px);
+  border-radius: 30px;
+  overflow: hidden;
+  font-size: 0.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  z-index: 10000;
+}
+
+#toast.reveal {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
