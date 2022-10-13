@@ -1,22 +1,17 @@
 {
-<<<<<<< HEAD:eugene028/React-App/react-app/package.json
-<<<<<<< HEAD:React-App/react-app/package.json
-  "name": "react-app",
-=======
-  "name": "react-todo",
->>>>>>> beaac2da9d570ac191bc090818b3ff1a83aec3d3:example/react-todo/package.json
-=======
-  "name": "react-todo",
->>>>>>> beaac2da9d570ac191bc090818b3ff1a83aec3d3:example/react-todo/package.json
+  "name": "eugene-todo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.55.0",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
