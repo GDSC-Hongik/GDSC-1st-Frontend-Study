@@ -52,7 +52,8 @@ function saveToLocalStorage(todo: any) {
 }
 
 const defaultState: IGlobalState = {
-	todo: JSON.parse(window.localStorage.getItem(LocalStorageKey.TODO) as any),
+	todo:
+		JSON.parse(window.localStorage.getItem(LocalStorageKey.TODO) as any) || {},
 }
 
 export const globalContext = createContext({} as IGlobalContext)
