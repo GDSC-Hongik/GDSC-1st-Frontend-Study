@@ -7,6 +7,24 @@
 		"tailwindcss"
 	],
 
+	// https://github.com/ben-rogerson/twin.macro/discussions/227
+	"scss.validate": false,
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"editor.autoClosingQuotes": "always",
+	"tailwindCSS.experimental.classRegex": [
+		"tw`([^`]*)", // tw`...`
+		"tw=\"([^\"]*)", // <div tw="..." />
+		"tw={\"([^\"}]*)", // <div tw={"..."} />
+		"tw\\.\\w+`([^`]*)", // tw.xxx`...`
+		"tw\\(.*?\\)`([^`]*)" // tw(Component)`...`
+	],
+	"tailwindCSS.includeLanguages": {
+		"typescript": "javascript",
+		"typescriptreact": "javascript"
+	},
+
 	// prevent warning when using tailwind directives
 	"css.lint.unknownAtRules": "ignore",
 	"scss.lint.unknownAtRules": "ignore"

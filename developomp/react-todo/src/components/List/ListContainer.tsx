@@ -1,12 +1,14 @@
-import "./ListContainer.css"
+import tw from "twin.macro"
 
 import List from "./List"
 
+const ListContainerComponent = tw.div`flex h-full gap-10 p-10 content-start bg-zinc-200`
+
 function ListContainer() {
 	return (
-		<div className="list-container">
+		<ListContainerComponent>
 			<List />
-		</div>
+		</ListContainerComponent>
 	)
 }
 

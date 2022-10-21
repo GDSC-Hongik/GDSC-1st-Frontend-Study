@@ -1,7 +1,9 @@
-import "./AddListButton.css"
+import tw from "twin.macro"
+
+const AddListButtonComponent = tw.button``
 
 function AddListButton() {
-	return <button className="add-list">add list button</button>
+	return <AddListButtonComponent>add list button</AddListButtonComponent>
 }
 
 export default AddListButton

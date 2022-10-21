@@ -1,7 +1,9 @@
-import "./Toolbar.css"
+import tw from "twin.macro"
+
+const ToolbarComponent = tw.div`h-6 bg-zinc-500`
 
 function Toolbar() {
-	return <div className="toolbar">toolbar</div>
+	return <ToolbarComponent>toolbar</ToolbarComponent>
 }
 
 export default Toolbar

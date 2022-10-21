@@ -1,4 +1,0 @@
-.list-container {
-	@apply flex h-full gap-10 p-10 justify-start;
-	@apply bg-zinc-200;
-}
