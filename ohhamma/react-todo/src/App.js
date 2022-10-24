@@ -56,7 +56,7 @@ function App() {
     <>
       <GlobalStyle />
       <TodoContainer>
-        <TodoHead title='⛧ 투두리스트 ⛧' />
+        <TodoHead title='투두리스트' />
         <TodoForm onAdd={onAdd} />
         <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
       </TodoContainer>
