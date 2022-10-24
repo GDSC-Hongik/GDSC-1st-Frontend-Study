@@ -5,9 +5,16 @@ import tw from "twin.macro"
 import { faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const ToDoItemComponent = tw.div`flex content-between rounded-md bg-zinc-500`
-const TextArea = tw.textarea`m-2 bg-transparent resize-none`
-const RemoveItemButton = tw.button`w-9 text-white rounded-md hover:bg-zinc-600`
+const ToDoItemComponent = tw.div`
+	flex content-between rounded-md bg-transparent
+	hover:bg-gray-700 hover:bg-opacity-50`
+
+const TextArea = tw.textarea`m-2 bg-transparent resize-none font-bold text-2xl text-white`
+
+const RemoveItemButton = tw.button`
+	w-9 text-white rounded-r-md opacity-50
+	hover:opacity-80
+	active:opacity-100`
 
 type ItemProps = {
 	todoKey: string

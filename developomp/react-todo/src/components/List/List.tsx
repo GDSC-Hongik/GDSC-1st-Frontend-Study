@@ -8,7 +8,7 @@ import ToDoItem from "./ToDoItem"
 const ListComponent = tw.div`
 	flex flex-col w-80 rounded-xl pt-3 px-5
 	whitespace-nowrap gap-2 overflow-y-scroll
-	bg-zinc-400
+	bg-zinc-900
 `
 
 function List() {
