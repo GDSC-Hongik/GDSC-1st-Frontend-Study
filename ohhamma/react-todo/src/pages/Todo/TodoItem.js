@@ -16,6 +16,8 @@ const Item = styled.li`
   justify-content: space-between;
 `;
 
+const Buttons = styled.div``;
+
 const DoneButton = styled(CheckSolid)`
   margin: 0px 0px 0px 10px;
   &:hover {
@@ -37,18 +39,16 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
     <>
       <Item done={done ? false : true}>
         <span>{text}</span>
-        <div className='buttons'>
+        <Buttons>
           <DoneButton
-            className='button'
             onClick={() => onToggle(id)}
             width={20} height={20}
             fill="rgba(156, 163, 219, 0.7)" />
           <DelButton
-            className='button'
             onClick={() => onDel(id)}
             width={18} height={18}
             fill="rgba(50, 42, 38, 0.5)" />
-          </div>
+          </Buttons>
       </Item>
     </>
   )
