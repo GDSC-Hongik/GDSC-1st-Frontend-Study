@@ -3,8 +3,13 @@ import TodoContainer from './pages/Todo/TodoContainer';
 import TodoHead from './pages/Todo/TodoHead';
 import TodoForm from './pages/Todo/TodoForm';
 import TodoList from './pages/Todo/TodoList';
-import './App.css';
-import './pages/Todo/Todo.css';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #677DB7;
+  }
+`;
 
 function App() {
   const TODOS_KEY = "todos";
@@ -48,11 +53,14 @@ function App() {
   })
 
   return (
-    <TodoContainer>
-      <TodoHead title='⛧ 투두리스트 ⛧' />
-      <TodoForm onAdd={onAdd} />
-      <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
-    </TodoContainer>
+    <>
+      <GlobalStyle />
+      <TodoContainer>
+        <TodoHead title='⛧ 투두리스트 ⛧' />
+        <TodoForm onAdd={onAdd} />
+        <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
+      </TodoContainer>
+    </>
   );
 }
 
