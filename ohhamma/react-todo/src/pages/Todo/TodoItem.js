@@ -1,13 +1,25 @@
 import React from 'react';
 import { ReactComponent as CheckSolid } from '../../assets/check-solid.svg';
 import { ReactComponent as XSolid } from '../../assets/x-solid.svg';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Item = styled.li`
-  color: ${props => props.done ? 'rgba(69, 75, 102, 0.6)' : 'rgba(69, 75, 102, 0.3)'};
-  font-weight: ${props => props.done ? 600 : 300};
-  font-style: ${props => props.done ? 'normal' : 'unset'};
-  text-decoration: ${props => props.done ? 'none' : 'line-through'};
+  ${(props) => {
+    switch (props.done) {
+      case "on":
+        return css`
+          color: rgba(69, 75, 102, 0.3);
+          font-weight: 400;
+          font-style: unset;
+          text-decoration: line-through;
+        `;
+      default:
+        return css`
+          color: rgba(69, 75, 102, 0.6);
+          font-weight: 600;
+        `;
+    }
+  }}
   padding: 7px 0px 8px 7px;
   margin-bottom: 7px;
   border-bottom: 1px solid rgba(25, 19, 8, 0.1);
@@ -37,7 +49,7 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
 
   return (
     <>
-      <Item done={done ? false : true}>
+      <Item done={done ? 'on' : 'off'}>
         <span>{text}</span>
         <Buttons>
           <DoneButton
