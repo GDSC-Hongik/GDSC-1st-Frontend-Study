@@ -63,13 +63,21 @@ ul::-webkit-scrollbar-track {
 }
 
 li {
-  color: rgba(25, 19, 8, 0.5);
+  color: rgba(69, 75, 102, 0.6);
   padding: 7px 0px 8px 7px;
   margin-bottom: 7px;
   border-bottom: 1px solid rgba(25, 19, 8, 0.1);
   font-size: 15px;
+  font-weight: 700;
   display: flex;
   justify-content: space-between;
+}
+
+li.on {
+  color: rgba(69, 75, 102, 0.3);
+  text-decoration: line-through;
+  font-style: unset;
+  font-weight: 300;
 }
 
 .button {

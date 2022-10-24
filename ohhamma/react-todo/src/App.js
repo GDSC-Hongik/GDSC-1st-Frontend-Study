@@ -29,13 +29,18 @@ function App() {
       ...todos,
       {
         id: Date.now(),
-        text
+        text,
+        done: false
       }
     ])
   }
 
   const onDel = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
+  }
+
+  const onToggle = (id) => {
+    setTodos(todos.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo))
   }
 
   useEffect(() => {
@@ -46,7 +51,7 @@ function App() {
     <TodoContainer>
       <TodoHead title='⛧ 투두리스트 ⛧' />
       <TodoForm onAdd={onAdd} />
-      <TodoList todos={todos} onDel={onDel} />
+      <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
     </TodoContainer>
   );
 }
