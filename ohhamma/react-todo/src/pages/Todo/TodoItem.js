@@ -20,7 +20,8 @@ const Item = styled.li`
         `;
     }
   }}
-  padding: 7px 0px 8px 7px;
+  height: 24px;
+  padding: 7px 7px 8px 7px;
   margin-bottom: 7px;
   border-bottom: 1px solid rgba(25, 19, 8, 0.1);
   font-size: 15px;
@@ -28,20 +29,27 @@ const Item = styled.li`
   justify-content: space-between;
 `;
 
-const Buttons = styled.div``;
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+`;
 
 const DoneButton = styled(CheckSolid)`
-  margin: 0px 0px 0px 10px;
+  fill: ${props => props.done === 'on' ? 'rgba(255, 99, 71, 0.6)' : 'rgba(154, 205, 50, 0.7)'};
   &:hover {
     cursor: pointer;
+    width: 22px;
+    height: 22px;
   }
-  fill: ${props => props.done === 'on' ? 'rgba(255, 99, 71, 0.6)' : 'rgba(154, 205, 50, 0.7)'};
 `;
 
 const DelButton = styled(XSolid)`
-  margin: 0px 0px 0px 10px;
+  margin-top: 1px;
   &:hover {
     cursor: pointer;
+    width: 19px;
+    height: 19px;
   }
 `;
 
@@ -60,7 +68,7 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
             fill="rgba(156, 163, 219, 0.7)" />
           <DelButton
             onClick={() => onDel(id)}
-            width={18} height={18}
+            width={17} height={17}
             fill="rgba(50, 42, 38, 0.4)" />
           </Buttons>
       </Item>
