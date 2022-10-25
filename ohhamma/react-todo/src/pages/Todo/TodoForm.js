@@ -13,6 +13,7 @@ const Input = styled.input`
   border-radius: 15px;
   outline: none;
   padding-left: 15px;
+  padding-right: 15px;
   background: rgba(25, 19, 8, 0.1);
 `;
 
