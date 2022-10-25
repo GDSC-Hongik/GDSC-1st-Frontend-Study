@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 const List = styled.ul`
   list-style: none;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 10px auto 22px auto;
   padding: 0px 20px 20px 10px;
   max-width: 315px;
   width: 100%;

@@ -20,13 +20,17 @@ const Item = styled.li`
         `;
     }
   }}
-  height: 24px;
-  padding: 7px 7px 8px 7px;
-  margin-bottom: 7px;
+  min-height: 24px;
+  padding: 12px 7px 9px 7px;
   border-bottom: 1px solid rgba(25, 19, 8, 0.1);
   font-size: 15px;
   display: flex;
   justify-content: space-between;
+`;
+
+const TodoText = styled.span`
+  max-width: 225px;
+  word-wrap: break-word;
 `;
 
 const Buttons = styled.div`
@@ -59,7 +63,7 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
   return (
     <>
       <Item done={done ? 'on' : 'off'}>
-        <span>{text}</span>
+        <TodoText>{text}</TodoText>
         <Buttons>
           <DoneButton
             onClick={() => onToggle(id)}
