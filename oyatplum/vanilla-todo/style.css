@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(243, 190, 191);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: 650px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 1px 1px 15px rgba(92, 92, 92, 0.5);
+}
+section{
+    padding: 0 20px 20px 20px;
+}
+h2{
+    color: rgb(162, 82, 106);
+}
+h4{
+    color:rgb(127, 102, 146);
+}
+#input-text{
+    background-color: rgb(247, 222, 227);
+    border: none;
+    border-radius: 20px;
+    width: 75%;
+    height: 35px;
+    padding: 15px;
+}
+button{
+    border: none;
+    background: none;
+    font-size: 20px;
+    width: 40px;
+}
+.todo-section,
+.done-section{
+    flex:0.5;
+    border-top: 1px solid rgb(177, 171, 171);
+    overflow: auto;
+}

@@ -1,99 +1,45 @@
-## 📝 과제 제출 가이드
-```
-│
-├─ GDSC-1st-Frontend-Study
-│     │
-│     ├─ eugene028 (dir)
-│     │     │
-│     │     ├─  과제 실습 (dir)
-│     │     │    ├─ public (dir)
-│     │     │    ├─ src (dir)
-|     |     |    ├─ .gitignore
-|     |     |    ├─ package.json
-|     |     |    └─ package-lock.json
-│     │     │
-│     │     └─  WIL (dir)
-│     │          ├─ WEEK1.md
-│     │          ├─ WEEK2.md
-|     |          └─ ...
-|     |
-│     ├─ 9yujin (dir)
-│     │     │
-│     │     ├─  과제 실습 (dir)
-│     │     │    ├─ public (dir)
-│     │     │    ├─ src (dir)
-|     |     |    ├─ .gitignore
-|     |     |    ├─ package.json
-|     |     |    └─ package-lock.json
-│     │     │
-│     │     └─  WIL (dir)
-│     │          ├─ WEEK1.md
-│     │          ├─ WEEK2.md
-|     |          └─ ...
-│     │
-```
+
+💡 한 주 동안 당신이 학습한 내용은 무엇인가요? 당신의 학습 경험을 공유해주세요.
 
 
-### 📤 프로젝트 시작하기
-* Visual Studio Code를 실행하고, 원격저장소를 연결해주세요.
-* `git init` // 원격 저장소 init
-* `git remote -v https://github.com/GDSC-Hongik/GDSC-1st-FrontEnd-Study.git` // 원격 저장소 연결
-* `git pull origin main`
-* Visual Studio Code의 terminal에서 자신의 branch로 checkout을 해주세요
-    `git checkout origin [본인 github 아이디]`
-* **🚨작업은 해당 본인 branch에서만 진행해주세요.**
-
-   ![image](https://user-images.githubusercontent.com/55226431/192223658-e7ae85a0-404e-41f6-b7bc-8bf92bf9feb5.png)
-본인의 디렉토리, 본인의 branch에서 작업 진행해주시면 됩니다!!
-* `git branch` : 현재 branch 확인
-
-### 🏡 작업공간 생성
-* GDSC-1st-Frontend-Study (프로젝트 루트 디렉토리)
-  * 본인 github 아이디명의 디렉토리를 생성해주세요
-    * 과제 실습, WIL 디렉토리 생성
-        * 해당 주차 디렉토리 생성 (과제 공지 주제명으로 해주세요!)
-        
-* `WEEK.md`에는 해당 주차의 학습을 정리한 자신의 기술 블로그 링크 달아놓기! 
-
-| 본인 github 아이디명의 디렉토리부터 만들고 시작하시면 됩니다! 😊
-
-### 💾 중간 중간 commit 하기
-* 파트 별로 작업을 끝냈거나 더 작은 단위로 작업을 끝낼 때 마다 commit을 해 주는 게 좋아요
-```
-* ❗commit convention ❗️
-
-  * Feat: 새로운 기능 추가
-  * Fix: 버그 수정
-  * Docs: 문서 수정
-  * Style: 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
-  * Refactor: 코드 리펙토링
-  * Test: 테스트 코드, 리펙토링 테스트 코드 추가
-  * Chore: 빌드 업무 수정, 패키지 매니저 수정
-```
-* 예시: `git commit -m "[Feat(해당 파일): OO 기능 추가]"`
-
-### ✍🏻 README.md 파일 작성하기
-
-* 자신이 이번주에 학습한 내용을 정리한 기술 블로그 링크를 README.md 파일에 올려주세요! 
-
-* .md 파일은 mark down 언어로 작성된 파일을 뜻해요
-  * [참고] https://gist.github.com/ihoneymon/652be052a0727ad59601#24-코드
+GDSC Hongik의 Vision은 모두가 **주인이 되는 지식 공유 커뮤니티**를 만드는 것이에요.
+스터디를 진행하면서, 자신이 배운 지식을 공유하는 것으로 학습을 완성시키고자 해요.
+나의 학우가 가진 지식도 나의 것이 될 수 있고, 나의 지식도 학우의 것이 될 수 있어요.
+우리의 학습에 대한 경험을 기록하고, 공유하면서 학습의 즐거움을 나누고자 합니다.
+지금 이 페이지에서, 스터디 당일날 어떤 활동을 진행하는지 소개하도록 할게요! 👩🏻‍🚀
 
 
-### 🙌🏻 Github 레포지토리에 push하기
+# 스터디 시간/장소
 
-* 해당 주차의 과제를 모두 끝냈다면, 프로젝트 변경 사항을 remote repository(github repository)에 push 합니다
-  * `git push origin [본인 github 아이디 브랜치 명]` : git에 등록되어 있는 origin(github repository)에 있는 자신의 branch로 프로젝트의 변경 사항을 반영합니다
-* push를 완료했다면 스터디 repository에서 pull request를 진행합니다
-  * 링크: https://github.com/GDSC-Hongik/GDSC-1st-Frontend-Study/pulls
-* PR(Pull Request)시 메세지 제목은 다음과 같이 `[1기_OOO] 1주차 미션 제출합니다.` 라고 적은 후 `create pull request` 버튼을 눌러주세요
-* PR : `base: [master]` <- `compare: [본인 github 아이디]`
+- **스터디 진행 일시** : 매주 금요일 오후 6시
+- **스터디 진행 장소** : 매주 화요일 공지!
 
-### 🤝 gitignore 제출 안내 
-* `node_modules` 파일 용량이 너무 큰 관계로, `gitignore`에 꼭 추가하여 `node_modules`를 제외하고 레포지토리에 push해주세요! 
-https://www.toptal.com/developers/gitignore
-위 사이트에서 쉽게 `.gitignore`파일의 포맷을 설정 가능합니다!
+# 스터디 활동 내용
 
-### ⏰ 과제 제출 마감 기한
+### 그룹 단위 리뷰 활동 (18:00 ~ 18:50)
 
-* 프론트엔드 스터디 전날인 목요일 23:59까지 제출해주시면 됩니다! 😊
+🌠 **코드 리뷰 + 개인 기술 블로그 글 설명**
+- 전 주에 주어진 과제를 수행하고, 스터디 당일 자신이 수행한 과제를 팀 단위로 평가합니다.
+    - 팀은 매주 `랜덤으로 매칭`됩니다.
+- core member의 피드백 + 그룹별 **동료학습**  (개인 기술 블로그에 작성하면서 학습한 내용을 설명하고, 그에 대한 피드백을 진행합니다)
+- 1:多 발표 ❌
+    - core member를 중심으로 그룹을 나누어 그룹 내에서 작성한 코드와 학습 내용을 확인해요.
+    - 개인 기술 블로그 `기록을 통한 학습 내용 설명`을 통하여 이번주 학습에 대한 경험을 공유합니다. 이 과정에서 힘들었던 점, 실수했던 내용을 자유롭게 나누어요!
+
+💚 **그룹 단위 리뷰 활동 완료 조건** 
+
+- 팀 내에서 코드리뷰를 하는 과정에서 동료의 커밋내역에 `github` 커멘트를 작성해요. 
+    - 코멘트를 진행하면서 실시간으로 코드리뷰에 대한 기록을 남깁니다.
+    - 코어멤버의 코멘트도 받습니다 .
+- 기술 블로그 `댓글` 달기
+    - 우리 그룹 멤버들이 학습한 내용에 대하여 아쉬웠던 점, 좋았던 점에 대해 댓글을 달아주세요. 자세하면 자세할수록 좋아요.
+
+### 나의 경험 발표하기 (18:50~19:30)
+
+- 그룹별 활동을 마치고 각 그룹에서 1명을 정하여 우리 그룹에서 공유되었던 학습 경험을 발표를 통하여 공유합니다.
+    - 별다른 발표자료가 없어도 괜찮아요.
+- 매주 돌아가면서 발표 멤버를 선정해요. `한명도 빠짐없이` 자신의 경험을 다른 스터디원들과 공유할 수 있도록 할 거예요.
+
+### 코어 멤버 세션 (Random!)
+
+그룹 활동이 너무 일찍 끝나거나, 어려운 주제를 다루는 날에는 Core member가 진행하는 세션이 진행되어요. 많은 기대 부탁해요
