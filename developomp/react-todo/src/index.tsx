@@ -1,10 +1,11 @@
 import "./index.css"
+import "semantic-ui-css/semantic.min.css"
 
-import React from "react"
 import ReactDOM from "react-dom/client"
 import { HelmetProvider } from "react-helmet-async"
 import { BrowserRouter } from "react-router-dom"
 import { GlobalStore } from "./globalContext"
+import GlobalStyles from "./GlobalStyles"
 
 import App from "./App"
 
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<GlobalStore>
 		<BrowserRouter>
 			<HelmetProvider>
+				<GlobalStyles />
 				<App />
 			</HelmetProvider>
 		</BrowserRouter>
