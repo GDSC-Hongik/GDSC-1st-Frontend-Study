@@ -8,7 +8,7 @@ interface MenuBottomSheetProps {
   isOpen: boolean;
   onDismiss: () => void;
   onDeleteTodo: () => void;
-  label: string;
+  label?: string;
 }
 
 const MenuBottomSheet = ({
@@ -19,7 +19,7 @@ const MenuBottomSheet = ({
 }: MenuBottomSheetProps) => {
   const handleDeleteTodo = () => {
     onDismiss();
-    setTimeout(() => onDeleteTodo(), 300);
+    onDeleteTodo();
   };
 
   return (

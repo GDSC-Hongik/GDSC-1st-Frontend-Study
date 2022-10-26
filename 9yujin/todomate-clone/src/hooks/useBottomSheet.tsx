@@ -1,16 +1,20 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { ITodoItem } from '../interfaces/ITodoItem';
+import { bottomSheetState } from '../stores/bottomSheet';
 
 function useBottomSheet(initial: boolean) {
-  const [isOpen, setIsOpen] = useState(initial);
+  const [bottomSheet, setBottomSheet] = useRecoilState(bottomSheetState);
+  const { isOpen, selectedItem } = bottomSheet;
 
-  function onOpen() {
-    setIsOpen(true);
+  function onOpen(item: ITodoItem) {
+    setBottomSheet({ selectedItem: item, isOpen: true });
   }
   function onDismiss() {
-    setIsOpen(false);
+    setBottomSheet({ selectedItem: null, isOpen: false });
   }
 
-  return [isOpen, onOpen, onDismiss] as const;
+  return { isOpen, onOpen, onDismiss, selectedItem };
 }
 
 export default useBottomSheet;
