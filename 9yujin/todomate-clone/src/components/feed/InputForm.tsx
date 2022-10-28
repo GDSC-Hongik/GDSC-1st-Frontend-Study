@@ -4,14 +4,12 @@ import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg'
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 import useOutsideRef from '../../hooks/useOutsideRef';
 import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { todoState } from '../../stores/todo';
 import useInput from '../../hooks/useInput';
-import uuid from 'react-uuid';
+import useTodo from '../../hooks/useTodo';
 
 interface InputFormProps {
   category: ICategory;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpen: Dispatch<SetStateAction<any>>;
   initialValue?: string;
 }
 
@@ -20,34 +18,32 @@ const InputForm = ({
   setOpen,
   initialValue = '',
 }: InputFormProps) => {
-  const setTodo = useSetRecoilState(todoState);
   const { value, onChange, resetValue } = useInput(initialValue);
+  const { insertTodo, editTodo } = useTodo();
 
-  const insertTodo = (inputValue: string) => {
-    if (inputValue) {
-      const newTodo = {
-        label: inputValue,
-        id: uuid(),
-        isDone: false,
-        category: category,
-      };
-      setTodo((prev) => [...prev, newTodo]);
-    } else {
-      setOpen(false);
-    }
+  
+
+  const onCreate = () => {
+    insertTodo(value, category);
+    setOpen(false);
     resetValue();
   };
 
   const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       if (e.nativeEvent.isComposing === false) {
-        insertTodo(value);
+        onCreate();
+        if (value !== '') {
+          setOpen(true);
+        } else {
+          setOpen(false);
+        }
         e.preventDefault();
       }
     }
   };
 
-  const inputRef = useOutsideRef(insertTodo, value);
+  const inputRef = useOutsideRef(onCreate, value);
 
   return (
     <>

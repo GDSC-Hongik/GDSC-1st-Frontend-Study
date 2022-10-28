@@ -8,6 +8,7 @@ interface MenuBottomSheetProps {
   isOpen: boolean;
   onDismiss: () => void;
   onDeleteTodo: () => void;
+  onEditTodo: () => void;
   label?: string;
 }
 
@@ -15,6 +16,7 @@ const MenuBottomSheet = ({
   isOpen,
   onDismiss,
   onDeleteTodo,
+  onEditTodo,
   label,
 }: MenuBottomSheetProps) => {
   const handleDeleteTodo = () => {
@@ -22,12 +24,17 @@ const MenuBottomSheet = ({
     onDeleteTodo();
   };
 
+  const handleEditTodo = () => {
+    onDismiss();
+    onEditTodo();
+  };
+
   return (
     <StyledBottomSheet open={isOpen} onDismiss={onDismiss}>
       <Content>
         <h2>{label}</h2>
         <div>
-          <Button>
+          <Button onClick={handleEditTodo}>
             <div>
               <img src={edit} />
               <div>수정</div>

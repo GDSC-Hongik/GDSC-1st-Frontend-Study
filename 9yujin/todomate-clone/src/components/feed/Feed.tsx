@@ -1,15 +1,17 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useBottomSheet from '../../hooks/useBottomSheet';
 import useTodo from '../../hooks/useTodo';
 import { bottomSheetState } from '../../stores/bottomSheet';
 import { categoryState } from '../../stores/category';
+import editingState from '../../stores/editing';
 import FeedItemList from './FeedItemList';
 import MenuBottomSheet from './MenuBottomSheet';
 
 const Feed = () => {
   const categories = useRecoilValue(categoryState);
   const { isOpen, onDismiss, selectedItem } = useBottomSheet(false);
+  const setEditingItem = useSetRecoilState(editingState);
   const { deleteTodo } = useTodo();
   return (
     <Wrapper>
@@ -24,6 +26,7 @@ const Feed = () => {
       <MenuBottomSheet
         isOpen={isOpen}
         onDismiss={onDismiss}
+        onEditTodo={() => setEditingItem(selectedItem!.id)}
         onDeleteTodo={() => deleteTodo(selectedItem!.id)}
         label={selectedItem?.label}
       />
