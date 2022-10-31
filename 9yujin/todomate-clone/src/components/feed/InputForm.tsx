@@ -7,7 +7,7 @@ import useInput from '../../hooks/useInput';
 import useTodo from '../../hooks/useTodo';
 import editingState from '../../stores/editing';
 import { useRecoilState } from 'recoil';
-import { KeyboardEvent } from 'react';
+import { KeyboardEvent, useEffect } from 'react';
 
 interface InputFormProps {
   category: ICategory;
@@ -20,6 +20,12 @@ const InputForm = ({ category, initialValue = '', id }: InputFormProps) => {
   const { insertTodo, editTodo } = useTodo();
   const [editing, setEditing] = useRecoilState(editingState);
   const createNew = editing === category.label;
+
+  useEffect(() => {
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 300);
+  }, []);
 
   const onCreate = () => {
     insertTodo(value, category);

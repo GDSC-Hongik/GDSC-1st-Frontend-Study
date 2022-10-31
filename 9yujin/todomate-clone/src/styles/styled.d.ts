@@ -13,6 +13,7 @@ declare module 'styled-components' {
         gray_f5: '#f5f5f5';
         gray_f0: '#f0f0f0';
         gray_dd: '#dbdddf';
+        gray_99: '#999999';
       };
     };
     typo: {};

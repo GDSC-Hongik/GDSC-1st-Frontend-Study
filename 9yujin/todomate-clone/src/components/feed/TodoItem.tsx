@@ -1,10 +1,8 @@
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 import { ITodoItem } from '../../interfaces/ITodoItem';
-import { todoState } from '../../stores/todo';
 import useTodo from '../../hooks/useTodo';
 import useBottomSheet from '../../hooks/useBottomSheet';
 
@@ -28,20 +26,24 @@ const TodoItem = ({ item }: { item: ITodoItem }) => {
     </>
   );
 };
+2;
 
 export default TodoItem;
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 21px;
   margin: 6px 0;
 
   & > div {
     display: flex;
 
-    align-items: center;
+    align-items: flex-start;
     p {
       margin-left: 8px;
+      line-height: 128%;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
   }
 
