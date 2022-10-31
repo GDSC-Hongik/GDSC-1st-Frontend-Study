@@ -23,7 +23,7 @@ const InputForm = ({ category, initialValue = '', id }: InputFormProps) => {
 
   const onCreate = () => {
     insertTodo(value, category);
-    setEditing(category.label);
+    setEditing(null);
     resetValue();
   };
 
@@ -86,9 +86,10 @@ const Wrapper = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 21px;
-
+    width: 100%;
     input {
       margin-left: 8px;
+      width: 100%;
       border: none;
       padding: 0;
       font-size: 16px;
