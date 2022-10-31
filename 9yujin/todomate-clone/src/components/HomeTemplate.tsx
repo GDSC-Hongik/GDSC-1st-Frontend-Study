@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Feed from './feed/Feed';
-import Friends from './Friends/Friends';
+import Friends from './friends/Friends';
+import FriendsProfile from './friends/FriendsProfile';
 
 const HomeTemplate = () => {
   return (
@@ -9,6 +10,7 @@ const HomeTemplate = () => {
       <Main>
         <LeftSide>
           <Friends />
+          <FriendsProfile />
         </LeftSide>
         <Feed />
       </Main>

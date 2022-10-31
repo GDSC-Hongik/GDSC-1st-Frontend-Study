@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { ICategory } from '../../interfaces/ICategory';
-import editingState from '../../stores/editing';
+import { editingState } from '../../stores/editing';
 import { todosByCategory } from '../../stores/todo';
 import CategoryButton from './CategoryButton';
 import InputForm from './InputForm';

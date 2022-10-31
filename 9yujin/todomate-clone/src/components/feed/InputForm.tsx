@@ -5,7 +5,7 @@ import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg
 import useOutsideRef from '../../hooks/useOutsideRef';
 import useInput from '../../hooks/useInput';
 import useTodo from '../../hooks/useTodo';
-import editingState from '../../stores/editing';
+import { editingState } from '../../stores/editing';
 import { useRecoilState } from 'recoil';
 import { KeyboardEvent, useEffect } from 'react';
 

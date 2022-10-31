@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import { IFriend } from '../interfaces/IFriend';
 
 const initialState: IFriend[] = [
@@ -40,9 +40,15 @@ const initialState: IFriend[] = [
   },
 ];
 
-const friendsState = atom<IFriend[]>({
+export const friendsState = atom<IFriend[]>({
   key: 'friends',
   default: initialState,
 });
 
-export default friendsState;
+export const selectUserById = selectorFamily<IFriend[], string>({
+  key: 'selectUserById',
+  get:
+    (userId: string) =>
+    ({ get }) =>
+      get(friendsState).filter((friend) => friend.userId === userId),
+});

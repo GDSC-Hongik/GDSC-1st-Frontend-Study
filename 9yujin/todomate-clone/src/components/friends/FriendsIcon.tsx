@@ -1,5 +1,7 @@
+import { useSetRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { IFriend } from '../../interfaces/IFriend';
+import selectedState from '../../stores/selected';
 
 interface FriendsIconProps {
   friend: IFriend;
@@ -7,9 +9,18 @@ interface FriendsIconProps {
 }
 
 const FriendsIcon = ({ friend, selected }: FriendsIconProps) => {
+  const setSelectedProfile = useSetRecoilState(selectedState);
+  const selectProfile = () => {
+    setSelectedProfile(friend.userId);
+  };
+
   return (
     <FriendsIconWrapper>
-      <ProfileImage friend={friend} selected={selected} />
+      <ProfileImage
+        friend={friend}
+        selected={selected}
+        onClick={selectProfile}
+      />
       <p>{friend.name}</p>
     </FriendsIconWrapper>
   );
@@ -44,7 +55,8 @@ const getImageStyle = (friend: IFriend) => {
     default:
       return css`
         background-image: url(${friend.profileImage});
-        background-size: contain;
+        background-size: 40px 40px;
+        background-position: center;
       `;
   }
 };
@@ -54,7 +66,7 @@ const FriendsIconWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0px 8px;
+  margin-right: 16px;
   p {
     margin-top: 8px;
     font-size: 11px;

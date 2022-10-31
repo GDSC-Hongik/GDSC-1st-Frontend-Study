@@ -4,7 +4,7 @@ import useBottomSheet from '../../hooks/useBottomSheet';
 import useTodo from '../../hooks/useTodo';
 import { bottomSheetState } from '../../stores/bottomSheet';
 import { categoryState } from '../../stores/category';
-import editingState from '../../stores/editing';
+import { editingState } from '../../stores/editing';
 import FeedItemList from './FeedItemList';
 import MenuBottomSheet from './MenuBottomSheet';
 

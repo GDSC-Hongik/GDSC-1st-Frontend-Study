@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import box from '../../assets/images/openBox.png';
 import add from '../../assets/images/feedAddButton.png';
 import { ICategory } from '../../interfaces/ICategory';
-import editingState from '../../stores/editing';
+import { editingState } from '../../stores/editing';
 import { useSetRecoilState } from 'recoil';
 
 interface CategoryButtonProps {
