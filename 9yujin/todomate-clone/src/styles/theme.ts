@@ -13,6 +13,7 @@ export const theme: DefaultTheme = {
       gray_f0: '#f0f0f0',
       gray_dd: '#dbdddf',
       gray_99: '#999999',
+      gray_44: '#444444',
     },
   },
   typo: {},
