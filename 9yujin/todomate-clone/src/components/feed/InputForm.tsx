@@ -3,47 +3,55 @@ import { ICategory } from '../../interfaces/ICategory';
 import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 import useOutsideRef from '../../hooks/useOutsideRef';
-import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import useInput from '../../hooks/useInput';
 import useTodo from '../../hooks/useTodo';
+import editingState from '../../stores/editing';
+import { useRecoilState } from 'recoil';
+import { KeyboardEvent } from 'react';
 
 interface InputFormProps {
   category: ICategory;
-  setOpen: Dispatch<SetStateAction<any>>;
+  id?: string;
   initialValue?: string;
 }
 
-const InputForm = ({
-  category,
-  setOpen,
-  initialValue = '',
-}: InputFormProps) => {
+const InputForm = ({ category, initialValue = '', id }: InputFormProps) => {
   const { value, onChange, resetValue } = useInput(initialValue);
   const { insertTodo, editTodo } = useTodo();
-
-  
+  const [editing, setEditing] = useRecoilState(editingState);
+  const createNew = editing === category.label;
 
   const onCreate = () => {
     insertTodo(value, category);
-    setOpen(false);
+    setEditing(category.label);
+    resetValue();
+  };
+
+  const onEdit = () => {
+    editTodo(value, id!);
+    setEditing(null);
     resetValue();
   };
 
   const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       if (e.nativeEvent.isComposing === false) {
-        onCreate();
-        if (value !== '') {
-          setOpen(true);
+        if (createNew) {
+          onCreate();
+          if (value !== '') {
+            setEditing(category.label);
+          } else {
+            setEditing(null);
+          }
         } else {
-          setOpen(false);
+          onEdit();
         }
         e.preventDefault();
       }
     }
   };
 
-  const inputRef = useOutsideRef(onCreate, value);
+  const inputRef = useOutsideRef(createNew ? onCreate : onEdit, value);
 
   return (
     <>

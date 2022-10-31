@@ -2,21 +2,22 @@ import styled from 'styled-components';
 import box from '../../assets/images/openBox.png';
 import add from '../../assets/images/feedAddButton.png';
 import { ICategory } from '../../interfaces/ICategory';
-import { Dispatch, SetStateAction } from 'react';
+import editingState from '../../stores/editing';
+import { useSetRecoilState } from 'recoil';
 
 interface CategoryButtonProps {
   category: ICategory;
-  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const CategoryButton = ({ category, setOpen }: CategoryButtonProps) => {
+const CategoryButton = ({ category }: CategoryButtonProps) => {
+  const setEditing = useSetRecoilState(editingState);
   return (
     <Wrapper>
       <div>
         <Inner color={category.color}>
           <img src={box} />
           <div>{category.label}</div>
-          <button onClick={() => setOpen(true)}>
+          <button onClick={() => setEditing(category.label)}>
             <img src={add} />
           </button>
         </Inner>

@@ -9,24 +9,22 @@ import TodoItem from './TodoItem';
 
 const FeedItemList = ({ category }: { category: ICategory }) => {
   const items = useRecoilValue(todosByCategory(category.label));
-  const [editing, setEditing] = useRecoilState(editingState);
-  const [isCreating, setIsCreating] = useState<boolean>(false);
-
+  const editing = useRecoilValue(editingState);
   return (
     <>
-      <CategoryButton category={category} setOpen={setIsCreating} />
+      <CategoryButton category={category} />
       {items.map((item) =>
         editing === item.id ? (
           <InputForm
             category={category}
             initialValue={item.label}
-            setOpen={setEditing}
+            id={item.id}
           />
         ) : (
           <TodoItem item={item} key={item.id} />
         ),
       )}
-      {isCreating && <InputForm category={category} setOpen={setIsCreating} />}
+      {editing === category.label && <InputForm category={category} />}
     </>
   );
 };

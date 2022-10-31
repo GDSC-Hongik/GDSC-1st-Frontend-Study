@@ -21,10 +21,12 @@ const useTodo = () => {
   };
 
   const editTodo = (inputValue: string, id: string) => {
-    const index = todo.findIndex((v) => v.id === id);
-    const temp = [...todo];
-    temp[index] = { ...temp[index], label: inputValue };
-    setTodo(temp);
+    if (inputValue) {
+      const index = todo.findIndex((v) => v.id === id);
+      const temp = [...todo];
+      temp[index] = { ...temp[index], label: inputValue };
+      setTodo(temp);
+    }
   };
 
   const toggleTodo = (id: string) => {
