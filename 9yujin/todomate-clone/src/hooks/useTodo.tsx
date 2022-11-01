@@ -6,7 +6,6 @@ import { todoState } from '../stores/todo';
 
 const useTodo = () => {
   const [todo, setTodo] = useRecoilState(todoState);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const insertTodo = (inputValue: string, category: ICategory) => {
     if (inputValue) {

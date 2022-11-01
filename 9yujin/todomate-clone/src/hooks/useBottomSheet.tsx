@@ -14,7 +14,7 @@ function useBottomSheet(initial: boolean) {
     setBottomSheet({ selectedItem: null, isOpen: false });
   }
 
-  return { isOpen, onOpen, onDismiss, selectedItem };
+  return { isOpen, selectedItem, onOpen, onDismiss };
 }
 
 export default useBottomSheet;

@@ -3,36 +3,32 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import styled from 'styled-components';
 import edit from '../../assets/images/edit.png';
 import bin from '../../assets/images/bin.png';
+import useBottomSheet from '../../hooks/useBottomSheet';
+import { useSetRecoilState } from 'recoil';
+import { editingState } from '../../stores/editing';
+import useTodo from '../../hooks/useTodo';
 
-interface MenuBottomSheetProps {
-  isOpen: boolean;
-  onDismiss: () => void;
-  onDeleteTodo: () => void;
-  onEditTodo: () => void;
-  label?: string;
-}
+interface MenuBottomSheetProps {}
 
-const MenuBottomSheet = ({
-  isOpen,
-  onDismiss,
-  onDeleteTodo,
-  onEditTodo,
-  label,
-}: MenuBottomSheetProps) => {
+const MenuBottomSheet = ({}: MenuBottomSheetProps) => {
+  const { isOpen, onDismiss, selectedItem } = useBottomSheet(false);
+  const setEditingItem = useSetRecoilState(editingState);
+  const { deleteTodo } = useTodo();
+
   const handleDeleteTodo = () => {
     onDismiss();
-    onDeleteTodo();
+    deleteTodo(selectedItem!.id);
   };
 
   const handleEditTodo = () => {
     onDismiss();
-    onEditTodo();
+    setEditingItem(selectedItem!.id);
   };
 
   return (
     <StyledBottomSheet open={isOpen} onDismiss={onDismiss}>
       <Content>
-        <h2>{label}</h2>
+        <h2>{selectedItem?.label}</h2>
         <div>
           <Button onClick={handleEditTodo}>
             <div>

@@ -36,6 +36,7 @@ const ProfileImage = styled.div<{ image: string }>`
         `
       : css`
           background-image: url(${defaultImage});
+          border: 1px solid ${({ theme }) => theme.palette.mono.gray_ed};
         `}
   background-size: contain;
 `;
