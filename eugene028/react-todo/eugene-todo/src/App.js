@@ -1,55 +1,63 @@
 
 import './App.css';
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import TodoInsert from './components/TodoInsert';
 import TodoTemplate from './components/TodoTemplate';
 import TodoList from './components/TodoList';
 
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id : 1,
-      text : 'velog에 정리할 글 업로드하기',
-      checked : true,
-    },
-    {
-      id : 2,
-      text : '스터디를 위한 준비하기',
-      checked : false,
-    },
-  ])
 
-  const nextId = useRef(3);
-  const onInsert = useCallback(
-    text => {
-      const todo ={
+  const [todos, setTodos] = useState([]);
+
+
+  let nextId = useRef(0); //useRef를 이용하여 id를 지정한다.
+
+  /*사용자에게 입력받은 값 저장*/
+  const onInsert = useCallback( 
+    (text, checked) => {
+      const newtodo ={
         id : nextId.current,
-        text,
-        checked : false,
+        text : text,
+        checked : checked,
       };
-      setTodos(todos.concat(todo));
-      nextId.current +=1;
-    },
-    [todos],
+      nextId.current++;
+      setTodos([...todos, newtodo]);
+      localStorage.setItem("TODO", JSON.stringify([...todos, newtodo]));
+    },[todos]
   );
+
+  //새로고침으로 해야 할 일 결정 
+
+  useEffect(() => {
+    const storedTodo = localStorage.getItem("TODO"); 
+    if (storedTodo != null){//만약 저장공간이 비지 않았더라면
+      const myTodoList = JSON.parse(storedTodo); //받아온 데이터를 파싱하고
+      setTodos(myTodoList);
+      nextId.current = myTodoList.length; //useRef이용하여서 저장할 key값을 제대로 설정합니다.
+    }},[]
+    )
+  
 
   const onRemove = useCallback(
     id => {
-      setTodos(todos.filter(todo => todo.id !== id));
+      const deletedItem = todos.filter(todo => todo.id !== id);
+      setTodos(deletedItem);
+      localStorage.setItem("TODO",JSON.stringify(deletedItem));
     },
     [todos],
   );
 
   const onToggle = useCallback (
     id => {
-      setTodos(todos.map(todo => 
-        todo.id === id ? { ...todo, checked : !todo.checked } : todo,
-        ),
-        );
+      const toggledItem = todos.map(todo => 
+        todo.id === id ? { ...todo, checked : !todo.checked } : todo)
+      setTodos(toggledItem);
+      localStorage.setItem("TODO",JSON.stringify(toggledItem));
     },
     [todos],
   );
+
 
   return (
    <>

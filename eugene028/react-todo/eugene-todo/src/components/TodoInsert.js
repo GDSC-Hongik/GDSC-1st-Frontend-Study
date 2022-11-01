@@ -1,7 +1,10 @@
 import React from 'react';
 import {MdAdd} from 'react-icons/md';
 import {useState, useCallback} from 'react';
-import './TodoInsert.scss';
+import {
+    TodoInsertForm,
+    SubmitButton,
+} from './styledComponent';
 
 const TodoInsert = ({onInsert}) => {
     const [value, setValue] = useState('');
@@ -11,20 +14,20 @@ const TodoInsert = ({onInsert}) => {
 
     const onSubmit = useCallback(
         e => {
-            onInsert(value);
+            onInsert(value, false);
             setValue('');
             e.preventDefault();
         },
         [onInsert, value],
     );
     return (
-        <form className = "TodoInsert" onSubmit={onSubmit}>
+        <TodoInsertForm onSubmit={onSubmit}>
             <input placeholder='할 일을 입력해주세요'
             value = {value}
             onChange = {onChange}
             />
-            <button type = "submit"><MdAdd /></button>
-        </form>
+            <SubmitButton type = 'submit'><MdAdd /></SubmitButton>
+        </TodoInsertForm>
     );
 };
 
