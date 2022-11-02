@@ -1,5 +1,0 @@
-.list {
-	@apply flex flex-col w-80 rounded-xl pt-3 px-5;
-	@apply whitespace-nowrap gap-2 overflow-y-scroll;
-	@apply bg-zinc-400;
-}
