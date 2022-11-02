@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import TodoContainer from './pages/Todo/TodoContainer';
 import TodoHead from './pages/Todo/TodoHead';
 import TodoForm from './pages/Todo/TodoForm';
 import TodoList from './pages/Todo/TodoList';
 import { createGlobalStyle } from 'styled-components';
+import useTodos from './hooks/useTodos';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -31,26 +32,7 @@ function App() {
     else return [];
   }
 
-  const [todos, setTodos] = useState(loadTodos());
-  
-  const onAdd = (text) => {
-    setTodos([
-      ...todos,
-      {
-        id: Date.now(),
-        text,
-        done: false
-      }
-    ])
-  }
-
-  const onDel = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  }
-
-  const onToggle = (id) => {
-    setTodos(todos.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo))
-  }
+  const [todos, onAdd, onDel, onToggle] = useTodos(loadTodos());
 
   useEffect(() => {
     saveTodos();
