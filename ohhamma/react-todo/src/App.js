@@ -3,8 +3,17 @@ import TodoContainer from './pages/Todo/TodoContainer';
 import TodoHead from './pages/Todo/TodoHead';
 import TodoForm from './pages/Todo/TodoForm';
 import TodoList from './pages/Todo/TodoList';
-import './App.css';
-import './pages/Todo/Todo.css';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #677DB7;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+`;
 
 function App() {
   const TODOS_KEY = "todos";
@@ -29,7 +38,8 @@ function App() {
       ...todos,
       {
         id: Date.now(),
-        text
+        text,
+        done: false
       }
     ])
   }
@@ -38,16 +48,23 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   }
 
+  const onToggle = (id) => {
+    setTodos(todos.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo))
+  }
+
   useEffect(() => {
     saveTodos();
   })
 
   return (
-    <TodoContainer>
-      <TodoHead title='⛧ 투두리스트 ⛧' />
-      <TodoForm onAdd={onAdd} />
-      <TodoList todos={todos} onDel={onDel} />
-    </TodoContainer>
+    <>
+      <GlobalStyle />
+      <TodoContainer>
+        <TodoHead title='투두리스트' />
+        <TodoForm onAdd={onAdd} />
+        <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
+      </TodoContainer>
+    </>
   );
 }
 
