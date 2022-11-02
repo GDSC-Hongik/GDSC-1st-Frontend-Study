@@ -71,7 +71,6 @@ function reducer(state = defaultState, action: GlobalAction): IGlobalState {
 		case ActionsEnum.UPDATE_TODO:
 			const { key, content } = action.payload
 			state.todo[key] = content
-			console.log(state.todo)
 			break
 
 		default:
