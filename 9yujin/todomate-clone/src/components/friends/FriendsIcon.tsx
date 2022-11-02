@@ -46,7 +46,7 @@ const getImageStyle = (friend: IFriend) => {
     case 0:
       return css`
         ::after {
-          content: '${friend.name[0]}';
+          content: '${parseEmoji(friend.name)}';
           position: absolute;
           left: 50%;
           top: 50%;
