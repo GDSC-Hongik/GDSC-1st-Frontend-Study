@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { useDebouncedCallback } from "use-debounce"
 import { ActionsEnum, globalContext } from "../../globalContext"
 import tw from "twin.macro"
 
@@ -23,18 +24,19 @@ type ItemProps = {
 
 function ToDoItem({ todoKey: key, content }: ItemProps) {
 	const { dispatch } = useContext(globalContext)
+	const debounced = useDebouncedCallback((value) => {
+		dispatch({
+			type: ActionsEnum.UPDATE_TODO,
+			payload: { key, content: value },
+		})
+	}, 500)
 
 	return (
 		<ToDoItemComponent>
 			<TextArea
 				defaultValue={content}
 				rows={1}
-				onChange={(e) => {
-					dispatch({
-						type: ActionsEnum.UPDATE_TODO,
-						payload: { key, content: e.target.value },
-					})
-				}}
+				onChange={(e) => debounced(e.target.value)}
 			/>
 
 			<RemoveItemButton
