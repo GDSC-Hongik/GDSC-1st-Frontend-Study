@@ -1,9 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import useBottomSheet from '../../hooks/useBottomSheet';
-import useTodo from '../../hooks/useTodo';
 import { categoryState } from '../../stores/category';
-import { editingState } from '../../stores/editing';
 import FeedItemList from './FeedItemList';
 import MenuBottomSheet from './MenuBottomSheet';
 
@@ -20,7 +17,6 @@ const Feed = () => {
       </List>
 
       {/* 수정, 삭제 바텀시트 */}
-
       <MenuBottomSheet />
     </Wrapper>
   );

@@ -28,6 +28,19 @@ const FriendsIcon = ({ friend, selected }: FriendsIconProps) => {
 
 export default FriendsIcon;
 
+const parseEmoji = (string: string) => {
+  // https://avengersrhydon1121.tistory.com/268
+  if (
+    /^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/.test(
+      string,
+    )
+  ) {
+    return string.slice(0, 2);
+  } else {
+    return string[0];
+  }
+};
+
 const getImageStyle = (friend: IFriend) => {
   switch (friend.profileImage.length) {
     case 0:

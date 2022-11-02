@@ -7,20 +7,20 @@ import InputForm from './InputForm';
 import TodoItem from './TodoItem';
 
 const FeedItemList = ({ category }: { category: ICategory }) => {
-  const items = useRecoilValue(todosByCategory(category.label));
+  const todos = useRecoilValue(todosByCategory(category.label));
   const editing = useRecoilValue(editingState);
   return (
     <>
       <CategoryButton category={category} />
-      {items.map((item) =>
-        editing === item.id ? (
+      {todos.map((todo) =>
+        editing === todo.id ? (
           <InputForm
             category={category}
-            initialValue={item.label}
-            id={item.id}
+            initialValue={todo.label}
+            id={todo.id}
           />
         ) : (
-          <TodoItem item={item} key={item.id} />
+          <TodoItem item={todo} key={todo.id} />
         ),
       )}
       {editing === category.label && <InputForm category={category} />}

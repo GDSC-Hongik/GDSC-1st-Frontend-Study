@@ -5,6 +5,7 @@ import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 import { ITodoItem } from '../../interfaces/ITodoItem';
 import useTodo from '../../hooks/useTodo';
 import useBottomSheet from '../../hooks/useBottomSheet';
+import React from 'react';
 
 const TodoItem = ({ item }: { item: ITodoItem }) => {
   const { label, isDone, category, id } = item;
@@ -28,7 +29,7 @@ const TodoItem = ({ item }: { item: ITodoItem }) => {
 };
 2;
 
-export default TodoItem;
+export default React.memo(TodoItem);
 
 const Wrapper = styled.div`
   display: grid;

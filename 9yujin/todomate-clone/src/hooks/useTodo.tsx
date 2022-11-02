@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
 import { ICategory } from '../interfaces/ICategory';

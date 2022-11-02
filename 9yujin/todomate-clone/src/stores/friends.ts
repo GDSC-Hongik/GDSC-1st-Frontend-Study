@@ -4,8 +4,8 @@ import { IFriend } from '../interfaces/IFriend';
 const initialState: IFriend[] = [
   {
     userId: 'user1',
-    name: '규진',
-    profileImage: '🐬',
+    name: '🐬규진',
+    profileImage: '',
     statusMessage: '어쩌다 갓생',
   },
   {
