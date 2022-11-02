@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import DatePicker from "react-datepicker";
 // TodoInsert.jsx 
 export const TodoInsertForm = styled.form`
     display: flex;
@@ -38,6 +38,16 @@ export const TodoListCSS = styled.div`
     min-height: 320px;
     max-height: 513px;
 `;
+
+export const NullBox = styled.div`
+        display : flex;
+        align-items : center;
+        justify-content: center;
+        margin-top : 150px;
+        
+
+
+`
 
 //TodoListItem.js
 export const TodoListItemCSS = styled.div`
@@ -101,4 +111,18 @@ export const Content = styled.div`
     background: rgba(255, 255, 255, 0.4);
     border-radius: 30px;
     padding : 1rem;
+`
+
+//App.js
+export const MyDatePicker = styled(DatePicker)`
+    align-items: left;
+    justify-content : center;
+    margin-top : 1.5rem;
+    width : 200px;
+    height : 35px;
+    box-sizing : border-box;
+    padding : 8px 10px
+    border-radius : 4px;
+    font-size : 12px;
+    margin : 20px auto;
 `

@@ -4,12 +4,15 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import TodoInsert from './components/TodoInsert';
 import TodoTemplate from './components/TodoTemplate';
 import TodoList from './components/TodoList';
-
+import { ko } from 'date-fns/esm/locale';
+import "react-datepicker/dist/react-datepicker.css";
+import {
+  MyDatePicker,
+} from './components/styledComponent';
 
 function App() {
-
+  const [date, setDate] = useState(new Date());
   const [todos, setTodos] = useState([]);
-
 
   let nextId = useRef(0); //useRef를 이용하여 id를 지정한다.
 
@@ -62,6 +65,8 @@ function App() {
   return (
    <>
     <TodoTemplate>
+      <MyDatePicker dateFormat = "yyyy/MM/dd" selected = {date} onChange = {date => setDate(date)}
+      locale = {ko} placeholderText='Weeks start on Monday'/>
       <TodoInsert onInsert = {onInsert}/>
       <TodoList todos = {todos} onRemove={onRemove} onToggle ={onToggle}/>
     </TodoTemplate>

@@ -14,9 +14,13 @@ const TodoInsert = ({onInsert}) => {
 
     const onSubmit = useCallback(
         e => {
-            onInsert(value, false);
-            setValue('');
-            e.preventDefault();
+            if(value ==="")
+                window.alert("빈칸은 안돼요!")
+            else {
+                onInsert(value, false);
+                setValue('');
+                e.preventDefault();
+            }
         },
         [onInsert, value],
     );
