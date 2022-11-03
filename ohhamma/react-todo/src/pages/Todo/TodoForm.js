@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -20,15 +20,17 @@ const Input = styled.input`
 const TodoForm = ({ onAdd }) => {
   const [text, setText] = useState("");
 
-  const onChange = (event) => {
+  const onChange = useCallback(
+    event => {
     setText(event.target.value);
-  }
+  }, [text]);
 
-  const onSubmit = (event) => {
+  const onSubmit = useCallback(
+    event => {
     event.preventDefault();
     onAdd(text);
     setText('');
-  }
+  }, [text]);
 
   return (
     <>
