@@ -23,14 +23,14 @@ const TodoForm = ({ onAdd }) => {
   const onChange = useCallback(
     event => {
     setText(event.target.value);
-  }, [text]);
+  }, []);
 
   const onSubmit = useCallback(
     event => {
     event.preventDefault();
     onAdd(text);
     setText('');
-  }, [text]);
+  }, [onAdd, text]);
 
   return (
     <>
