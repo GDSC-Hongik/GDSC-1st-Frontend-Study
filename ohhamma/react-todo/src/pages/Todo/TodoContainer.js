@@ -17,9 +17,9 @@ const Wrapper = styled.div`
 
 const TodoContainer = ({ children }) => {
   return (
-    <>
-      <Wrapper>{children}</Wrapper>
-    </>
+    <Wrapper>
+      {children}
+    </Wrapper>
   )
 }
 

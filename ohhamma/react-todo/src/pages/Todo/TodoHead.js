@@ -17,9 +17,9 @@ const Wrapper = styled.div`
 
 const TodoHead = ({ title }) => {
   return (
-    <>
-      <Wrapper>{title}</Wrapper> 
-    </>
+    <Wrapper>
+      {title}
+    </Wrapper>
   )
 }
 

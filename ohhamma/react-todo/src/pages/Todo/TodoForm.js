@@ -2,6 +2,8 @@
 import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
 
+const Wrapper = styled.div``;
+
 const Form = styled.form`
   text-align: center;
 `;
@@ -22,7 +24,7 @@ const TodoForm = ({ onAdd }) => {
   const [text, onChange, onSubmit] = useInput('', onAdd);
 
   return (
-    <>
+    <Wrapper>
       <Form onSubmit={onSubmit}>
         <Input
           type='text'
@@ -31,7 +33,7 @@ const TodoForm = ({ onAdd }) => {
           onChange={onChange}
           required />
       </Form>
-    </>
+    </Wrapper>
   )
 }
 

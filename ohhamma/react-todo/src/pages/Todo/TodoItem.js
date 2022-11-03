@@ -3,6 +3,8 @@ import { ReactComponent as CheckSolid } from '../../assets/check-solid.svg';
 import { ReactComponent as XSolid } from '../../assets/x-solid.svg';
 import styled, { css } from 'styled-components';
 
+const Wrapper = styled.div``;
+
 const Item = styled.li`
   ${(props) => {
     switch (props.done) {
@@ -61,7 +63,7 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
   const {id, text, done} = todo;
 
   return (
-    <>
+    <Wrapper>
       <Item done={done ? 'on' : 'off'}>
         <TodoText>{text}</TodoText>
         <Buttons>
@@ -76,7 +78,7 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
             fill="rgba(50, 42, 38, 0.4)" />
           </Buttons>
       </Item>
-    </>
+    </Wrapper>
   )
 }
 
