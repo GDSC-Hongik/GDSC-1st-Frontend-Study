@@ -1,7 +1,26 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
-const useTodos = (initialValue) => {
+const useTodos = (initialValue, TODOS_KEY) => {
   const [todos, setTodos] = useState(initialValue);
+
+  useEffect(() => {
+    saveTodos();
+    setTodos(loadTodos());
+  }, [todos]);
+
+  const saveTodos = useCallback(() => {
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+  }, [todos, TODOS_KEY]);
+
+  const loadTodos = useCallback(() => {
+    const savedTodos = localStorage.getItem(TODOS_KEY);
+    if (savedTodos !== null) {
+      const parsedTodos = JSON.parse(savedTodos);
+      return parsedTodos;
+    }
+    else return [];
+  }, [TODOS_KEY]);
+
   const onAdd = useCallback(
     text => {
     setTodos([
