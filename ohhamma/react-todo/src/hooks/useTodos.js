@@ -1,30 +1,30 @@
 import { useState, useCallback } from "react";
 
 const useTodos = (initialValue) => {
-  const [values, setValues] = useState(initialValue);
+  const [todos, setTodos] = useState(initialValue);
   const onAdd = useCallback(
     text => {
-    setValues([
-      ...values,
+    setTodos([
+      ...todos,
       {
         id: Date.now(),
         text,
         done: false
       }
     ]);
-  }, [values]);
+  }, [todos]);
 
   const onDel = useCallback(
     id => {
-    setValues(values.filter(value => value.id !== id));
-  }, [values]);
+    setTodos(todos.filter(todo => todo.id !== id));
+  }, [todos]);
 
   const onToggle = useCallback(
     id => {
-    setValues(values.map(value => value.id === id ? {...value, done: !value.done} : value));
-  }, [values]);
+    setTodos(todos.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo));
+  }, [todos]);
   
-  return [values, onAdd, onDel, onToggle];
+  return [todos, onAdd, onDel, onToggle];
 }
 
 export default useTodos;
