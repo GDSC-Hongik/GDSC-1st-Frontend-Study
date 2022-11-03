@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const useTodos = (initialValue) => {
   const [values, setValues] = useState(initialValue);
-  const onAdd = (text) => {
+  const onAdd = useCallback(
+    text => {
     setValues([
       ...values,
       {
@@ -11,13 +12,18 @@ const useTodos = (initialValue) => {
         done: false
       }
     ]);
-  }
-  const onDel = (id) => {
+  }, [values]);
+
+  const onDel = useCallback(
+    id => {
     setValues(values.filter(value => value.id !== id));
-  }
-  const onToggle = (id) => {
+  }, [values]);
+
+  const onToggle = useCallback(
+    id => {
     setValues(values.map(value => value.id === id ? {...value, done: !value.done} : value));
-  }
+  }, [values]);
+  
   return [values, onAdd, onDel, onToggle];
 }
 
