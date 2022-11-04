@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
+
 *{
   font-family: 'Gowun Dodum', sans-serif;
 }
@@ -9,5 +10,6 @@ body {
   padding : 0;
   background-image: url( "img/sky2.png" );
 }
+
 
 
