@@ -1,66 +1,50 @@
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 import { ITodoItem } from '../../interfaces/ITodoItem';
-import { todoState } from '../../stores/todo';
+import useTodo from '../../hooks/useTodo';
 import useBottomSheet from '../../hooks/useBottomSheet';
-import MenuBottomSheet from './MenuBottomSheet';
+import React from 'react';
 
 const TodoItem = ({ item }: { item: ITodoItem }) => {
   const { label, isDone, category, id } = item;
-  const [todo, setTodo] = useRecoilState(todoState);
-  const [isOpen, onOpen, onDismiss] = useBottomSheet(false);
-
-  const handleToggleTodo = () => {
-    const index = todo.findIndex((v) => v.id === id);
-    const temp = [...todo];
-    temp[index] = { ...temp[index], isDone: !isDone };
-    setTodo(temp);
-  };
-
-  const handleDeleteTodo = () => {
-    setTodo(todo.filter((v) => v.id !== id));
-  };
+  const { toggleTodo } = useTodo();
+  const { onOpen } = useBottomSheet(false);
 
   return (
     <>
       <Wrapper>
         <div>
-          <Check onClick={handleToggleTodo}>
+          <Check onClick={() => toggleTodo(id)}>
             <TodoCheck fill={isDone ? category.color : '#DBDDDF'} />
             {isDone && <CheckIcon className="check" />}
           </Check>
           <p>{label}</p>
         </div>
-        <ThreeDot onClick={onOpen} />
+        <ThreeDot onClick={() => onOpen(item)} />
       </Wrapper>
-
-      {/* 수정, 삭제 바텀시트 */}
-      <MenuBottomSheet
-        isOpen={isOpen}
-        onDismiss={onDismiss}
-        onDeleteTodo={handleDeleteTodo}
-        label={label}
-      />
     </>
   );
 };
+2;
 
-export default TodoItem;
+export default React.memo(TodoItem);
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 21px;
   margin: 6px 0;
 
   & > div {
     display: flex;
 
-    align-items: center;
+    align-items: flex-start;
     p {
       margin-left: 8px;
+      line-height: 128%;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
   }
 

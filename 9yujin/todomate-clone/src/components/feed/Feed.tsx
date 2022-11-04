@@ -1,7 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { categoryState } from '../../stores/category';
 import FeedItemList from './FeedItemList';
+import MenuBottomSheet from './MenuBottomSheet';
 
 const Feed = () => {
   const categories = useRecoilValue(categoryState);
@@ -14,6 +15,9 @@ const Feed = () => {
           <FeedItemList category={category} key={category.label} />
         ))}
       </List>
+
+      {/* 수정, 삭제 바텀시트 */}
+      <MenuBottomSheet />
     </Wrapper>
   );
 };

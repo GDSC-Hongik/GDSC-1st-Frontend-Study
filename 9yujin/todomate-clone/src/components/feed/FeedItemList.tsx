@@ -1,21 +1,29 @@
-import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { ICategory } from '../../interfaces/ICategory';
-import { todoSelector } from '../../stores/todo';
+import { editingState } from '../../stores/editing';
+import { todosByCategory } from '../../stores/todo';
 import CategoryButton from './CategoryButton';
 import InputForm from './InputForm';
 import TodoItem from './TodoItem';
 
 const FeedItemList = ({ category }: { category: ICategory }) => {
-  const items = useRecoilValue(todoSelector(category.label));
-  const [open, setOpen] = useState<boolean>(false);
+  const todos = useRecoilValue(todosByCategory(category.label));
+  const editing = useRecoilValue(editingState);
   return (
     <>
-      <CategoryButton category={category} setOpen={setOpen} />
-      {items.map((item) => (
-        <TodoItem item={item} key={item.id} />
-      ))}
-      {open && <InputForm category={category} setOpen={setOpen} />}
+      <CategoryButton category={category} />
+      {todos.map((todo) =>
+        editing === todo.id ? (
+          <InputForm
+            category={category}
+            initialValue={todo.label}
+            id={todo.id}
+          />
+        ) : (
+          <TodoItem item={todo} key={todo.id} />
+        ),
+      )}
+      {editing === category.label && <InputForm category={category} />}
     </>
   );
 };

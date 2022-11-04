@@ -3,51 +3,61 @@ import { ICategory } from '../../interfaces/ICategory';
 import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 import useOutsideRef from '../../hooks/useOutsideRef';
-import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { todoState } from '../../stores/todo';
 import useInput from '../../hooks/useInput';
-import uuid from 'react-uuid';
+import useTodo from '../../hooks/useTodo';
+import { editingState } from '../../stores/editing';
+import { useRecoilState } from 'recoil';
+import { KeyboardEvent, useEffect } from 'react';
 
 interface InputFormProps {
   category: ICategory;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  id?: string;
   initialValue?: string;
 }
 
-const InputForm = ({
-  category,
-  setOpen,
-  initialValue = '',
-}: InputFormProps) => {
-  const setTodo = useSetRecoilState(todoState);
+const InputForm = ({ category, initialValue = '', id }: InputFormProps) => {
   const { value, onChange, resetValue } = useInput(initialValue);
+  const { insertTodo, editTodo } = useTodo();
+  const [editing, setEditing] = useRecoilState(editingState);
+  const createNew = editing === category.label;
 
-  const insertTodo = (inputValue: string) => {
-    if (inputValue) {
-      const newTodo = {
-        label: inputValue,
-        id: uuid(),
-        isDone: false,
-        category: category,
-      };
-      setTodo((prev) => [...prev, newTodo]);
-    } else {
-      setOpen(false);
-    }
+  useEffect(() => {
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 300);
+  }, []);
+
+  const onCreate = () => {
+    insertTodo(value, category);
+    setEditing(null);
+    resetValue();
+  };
+
+  const onEdit = () => {
+    editTodo(value, id!);
+    setEditing(null);
     resetValue();
   };
 
   const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       if (e.nativeEvent.isComposing === false) {
-        insertTodo(value);
+        if (createNew) {
+          onCreate();
+          if (value !== '') {
+            setEditing(category.label);
+          } else {
+            setEditing(null);
+          }
+        } else {
+          onEdit();
+        }
         e.preventDefault();
       }
     }
   };
 
-  const inputRef = useOutsideRef(insertTodo, value);
+  const inputRef = useOutsideRef(createNew ? onCreate : onEdit, value);
 
   return (
     <>
@@ -82,9 +92,10 @@ const Wrapper = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 21px;
-
+    width: 100%;
     input {
       margin-left: 8px;
+      width: 100%;
       border: none;
       padding: 0;
       font-size: 16px;

@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import Feed from './feed/Feed';
+import Friends from './friends/Friends';
+import FriendsProfile from './friends/FriendsProfile';
 
 const HomeTemplate = () => {
   return (
     <Wrapper>
       <Header></Header>
       <Main>
-        <div></div>
+        <LeftSide>
+          <Friends />
+          <FriendsProfile />
+        </LeftSide>
         <Feed />
       </Main>
     </Wrapper>
@@ -31,10 +36,11 @@ const Header = styled.div`
 const Main = styled.div`
   display: grid;
   grid-template-columns: 346px auto;
+  grid-gap: 60px;
   width: 100%;
   padding: 0 48px;
+`;
 
-  & > div {
-    margin-left: 64px;
-  }
+const LeftSide = styled.div`
+  margin-top: 24px;
 `;

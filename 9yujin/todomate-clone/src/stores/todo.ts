@@ -36,7 +36,7 @@ export const todoState = atom<ITodoItem[]>({
   default: initialState,
 });
 
-export const todoSelector = selectorFamily<ITodoItem[], string>({
+export const todosByCategory = selectorFamily<ITodoItem[], string>({
   key: 'todoSelector',
   get:
     (categoryName: string) =>
