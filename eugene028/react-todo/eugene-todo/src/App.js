@@ -10,6 +10,8 @@ import {
   MyDatePicker,
 } from './components/styledComponent';
 
+
+
 function App() {
   const [date, setDate] = useState(new Date());
   const [todos, setTodos] = useState([]);
@@ -25,7 +27,7 @@ function App() {
         checked : checked,
       };
       nextId.current++;
-      setTodos([...todos, newtodo]);
+      setTodos(todos => todos.concat(newtodo));
       localStorage.setItem("TODO", JSON.stringify([...todos, newtodo]));
     },[todos]
   );
@@ -40,12 +42,12 @@ function App() {
       nextId.current = myTodoList.length; //useRef이용하여서 저장할 key값을 제대로 설정합니다.
     }},[]
     )
-  
+
 
   const onRemove = useCallback(
     id => {
       const deletedItem = todos.filter(todo => todo.id !== id);
-      setTodos(deletedItem);
+      setTodos(todos => todos.filter(todo => todo.id !== id));
       localStorage.setItem("TODO",JSON.stringify(deletedItem));
     },
     [todos],
@@ -55,21 +57,27 @@ function App() {
     id => {
       const toggledItem = todos.map(todo => 
         todo.id === id ? { ...todo, checked : !todo.checked } : todo)
-      setTodos(toggledItem);
+      setTodos(todos => todos.map(todo => 
+        todo.id === id ? { ...todo, checked : !todo.checked } : todo));
       localStorage.setItem("TODO",JSON.stringify(toggledItem));
     },
     [todos],
   );
 
 
+
   return (
    <>
-    <TodoTemplate>
-      <MyDatePicker dateFormat = "yyyy/MM/dd" selected = {date} onChange = {date => setDate(date)}
-      locale = {ko} placeholderText='Weeks start on Monday'/>
-      <TodoInsert onInsert = {onInsert}/>
-      <TodoList todos = {todos} onRemove={onRemove} onToggle ={onToggle}/>
-    </TodoTemplate>
+      <TodoTemplate>
+          <MyDatePicker 
+            dateFormat = "yyyy/MM/dd" 
+            selected = {date} 
+            onChange = {date => setDate(date)}
+            ocale = {ko} 
+            placeholderText='Weeks start on Monday' />
+        <TodoInsert onInsert = {onInsert}/>
+        <TodoList todos = {todos} onRemove={onRemove} onToggle ={onToggle}/>
+      </TodoTemplate>
    </>
   );
 }
