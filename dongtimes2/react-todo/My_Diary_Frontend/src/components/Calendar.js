@@ -81,7 +81,7 @@ const Calendar = () => {
         onClick={() => {
           handleDayClick(yearOfPastMonth, pastMonth, dateOfPastMonth);
         }}
-        color="lightgray"
+        color="#888681"
       >
         {dateOfPastMonth}
       </DateSpan>,
@@ -107,7 +107,7 @@ const Calendar = () => {
           day.month() === dayjs().month() &&
           dateOfThisMonth === dayjs().date()
             ? 'red'
-            : 'black'
+            : 'white'
         }
       >
         {dateOfThisMonth}
@@ -126,7 +126,7 @@ const Calendar = () => {
         onClick={() => {
           handleDayClick(yearOfNextMonth, nextMonth, dateOfNextMonth);
         }}
-        color="lightgray"
+        color="#888681"
       >
         {dateOfNextMonth}
       </DateSpan>,
@@ -155,12 +155,14 @@ const Calendar = () => {
           </div>
         </div>
       </ControlBox>
-      <DayBox>
-        {daysList.map((day) => (
-          <span key={day}>{day}</span>
-        ))}
-      </DayBox>
-      <DateBox>{dateList.map((date) => date)}</DateBox>
+      <CalendarBox>
+        <DayBox>
+          {daysList.map((day) => (
+            <span key={day}>{day}</span>
+          ))}
+        </DayBox>
+        <DateBox>{dateList.map((date) => date)}</DateBox>
+      </CalendarBox>
     </>
   );
 };
@@ -170,7 +172,9 @@ const ControlBox = styled.div`
   align-items: center;
   font-size: 25px;
   padding: 20px 0;
-  border-bottom: 1px solid lightgray;
+  background-color: rgba(104, 103, 100, 40%);
+  border-radius: 20px;
+  color: white;
 
   & > div {
     display: flex;
@@ -184,11 +188,13 @@ const ControlBox = styled.div`
 
   & button {
     font-size: 20px;
-    padding: 3px 10px;
+    padding: 5px 10px;
     border-radius: 10px;
     border: 1px solid gray;
-    background-color: white;
+    color: white;
+    background-color: rgba(50, 50, 50, 70%);
     transition-duration: 0.3s;
+    height: 35px;
 
     &:hover {
       background-color: lightgray;
@@ -200,6 +206,7 @@ const ControlBox = styled.div`
     justify-content: center;
     align-items: center;
     flex-basis: 20%;
+    height: 100%;
   }
 
   .control-middle-area {
@@ -215,6 +222,7 @@ const ControlBox = styled.div`
     justify-content: space-around;
     align-items: center;
     flex-basis: 40%;
+    height: 100%;
   }
 `;
 
@@ -223,7 +231,8 @@ const DayBox = styled.div`
   grid-template-columns: repeat(7, 1fr);
   place-items: center;
   font-size: 20px;
-  margin: 15px 0;
+  padding: 15px 0;
+  color: white;
 `;
 
 const DateBox = styled.div`
@@ -235,12 +244,19 @@ const DateBox = styled.div`
   & > span {
     width: 100%;
     text-align: center;
-    padding: 10px 5px;
+    padding: 10px 0;
   }
 `;
 
 const DateSpan = styled.span`
   color: ${(props) => props.color};
+`;
+
+const CalendarBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 60%);
+  border-radius: 20px;
 `;
 
 export default Calendar;

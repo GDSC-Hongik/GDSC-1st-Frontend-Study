@@ -18,7 +18,7 @@ const Schedule = () => {
 
   return (
     <>
-      <PageBox font={settings.font}>
+      <PageBox image={settings.image}>
         <SidebarBox>
           <Sidebar />
         </SidebarBox>
@@ -48,26 +48,21 @@ const PageBox = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-
-  font-family: ${(props) => props.font}, sans-serif;
-
-  button,
-  input,
-  textarea {
-    font-family: ${(props) => props.font}, sans-serif;
-  }
+  background-image: url(${(props) => props.image});
+  background-size: 100% 100%;
 `;
 
 const SidebarBox = styled.div`
   display: flex;
-  flex-basis: 3%;
+  flex-basis: 5%;
+  width: 100%;
 `;
 
 const CalendarBox = styled.div`
   display: flex;
   flex-direction: column;
-  flex-basis: 57%;
-
+  flex-basis: 55%;
+  width: 100%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -78,7 +73,7 @@ const TodoBox = styled.div`
   display: flex;
   flex-direction: column;
   flex-basis: 40%;
-  border-left: 1px solid lightgray;
+  width: 100%;
 `;
 
 export default Schedule;
