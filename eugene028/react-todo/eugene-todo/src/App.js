@@ -39,7 +39,9 @@ function App() {
     if (storedTodo != null){//만약 저장공간이 비지 않았더라면
       const myTodoList = JSON.parse(storedTodo); //받아온 데이터를 파싱하고
       setTodos(myTodoList);
-      nextId.current = myTodoList.length; //useRef이용하여서 저장할 key값을 제대로 설정합니다.
+      console.log(myTodoList);
+      nextId.current = myTodoList[(myTodoList.length - 1)].id + 1; //useRef이용하여서 저장할 key값을 제대로 설정합니다.
+      console.log("현재 아이디는 : " ,nextId.current)
     }},[]
     )
 
