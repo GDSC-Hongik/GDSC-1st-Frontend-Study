@@ -26,18 +26,6 @@ const initialState: IFriend[] = [
     profileImage: '',
     statusMessage: 'user4',
   },
-  {
-    userId: 'user5',
-    name: '박테스트',
-    profileImage: '',
-    statusMessage: 'user5',
-  },
-  {
-    userId: 'user6',
-    name: '최테스트',
-    profileImage: '',
-    statusMessage: 'user6',
-  },
 ];
 
 export const friendsState = atom<IFriend[]>({
