@@ -2,6 +2,8 @@ import React from 'react';
 import TodoItem from './TodoItem';
 import styled from 'styled-components';
 
+const Wrapper = styled.div``;
+
 const List = styled.ul`
   list-style: none;
   margin: 10px auto 22px auto;
@@ -23,7 +25,7 @@ const List = styled.ul`
 
 const TodoList = ({ todos, onDel, onToggle }) => {
   return (
-    <>
+    <Wrapper>
       <List>
         {todos.map(todo => (
           <TodoItem
@@ -34,7 +36,7 @@ const TodoList = ({ todos, onDel, onToggle }) => {
           />
         ))}
       </List>
-    </>
+    </Wrapper>
   )
 }
 
