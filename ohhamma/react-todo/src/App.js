@@ -1,7 +1,8 @@
-import TodoContainer from './pages/Todo/TodoContainer';
-import TodoHead from './pages/Todo/TodoHead';
-import TodoForm from './pages/Todo/TodoForm';
-import TodoList from './pages/Todo/TodoList';
+import TodoContainer from './components/Todo/TodoContainer';
+import TodoHead from './components/Todo/TodoHead';
+import TodoForm from './components/Todo/TodoForm';
+import TodoList from './components/Todo/TodoList';
+import WeatherBox from './components/Weather/WeatherBox';
 import useTodos from './hooks/useTodos';
 import { createGlobalStyle } from 'styled-components';
 
@@ -24,6 +25,7 @@ function App() {
       <GlobalStyle />
       <TodoContainer>
         <TodoHead title='투두리스트' />
+        <WeatherBox/>
         <TodoForm onAdd={onAdd} />
         <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
       </TodoContainer>
