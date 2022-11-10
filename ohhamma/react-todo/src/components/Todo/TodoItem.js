@@ -24,7 +24,7 @@ const Item = styled.li`
   }}
   min-height: 24px;
   padding: 12px 7px 9px 7px;
-  border-bottom: 1px solid rgba(25, 19, 8, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 15px;
   display: flex;
   justify-content: space-between;

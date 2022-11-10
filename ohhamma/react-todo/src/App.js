@@ -20,6 +20,18 @@ const GlobalStyle = createGlobalStyle`
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
+    overflow: overlay;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      height: 30%;
+      background-color: rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0);
+    }
   }
 `;
 

@@ -17,7 +17,9 @@ const Input = styled.input`
   border-radius: 15px;
   outline: none;
   padding-left: 15px;
+  margin-left: 10px;
   padding-right: 15px;
+  margin-bottom: 8px;
   background: rgba(0, 0, 0, 0.2);
 
   :focus {
