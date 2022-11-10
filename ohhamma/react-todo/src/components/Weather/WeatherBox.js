@@ -5,28 +5,37 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0px auto 15px auto;
-  color: rgba(69, 75, 102, 0.8);
-  border-top: 2px solid rgba(25, 19, 8, 0.1);
-  border-bottom: 2px solid rgba(25, 19, 8, 0.1);
+  margin: 96px auto 0px 30px;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  width: 230px;
+  height: 140px;
 `;
 
 const Header = styled.div`
-  font-size: 25px;
-  margin: 5px auto 2px auto;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 auto;
+  margin-top: 13px;
+  color: rgba(255, 255, 255, 0.5);
 `;
 
 const Body = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  margin-top: 7px;
 `;
 
 const Text = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 18px;
-  margin: 0px 11px 8px 0;
+  font-size: 20px;
+  font-weight: 450;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.4);
 `;
 
 const Temp = styled.div``;
@@ -34,9 +43,10 @@ const Temp = styled.div``;
 const Condition = styled.div``;
 
 const Icon = styled.img`
-  width: 65px;
-  height: 65px;
-  margin: 0px 15px 0px 5px;
+  width: 75px;
+  height: 75px;
+  margin-right: 16px;
+  opacity: 1.0;
 `;
 
 const WeatherBox = () => {
@@ -59,7 +69,7 @@ const WeatherBox = () => {
         condition: res.data.weather[0].main
       });
       setIcon(
-        `http://openweathermap.com/img/w/${res.data.weather[0].icon}.png`
+        `http://openweathermap.com/img/wn/${res.data.weather[0].icon}.png`
       );
     } catch (error) {
       console.log(error);
@@ -77,8 +87,8 @@ const WeatherBox = () => {
       <Body>
         <Icon src={icon}/>
         <Text>
-          <Temp>temp : {weather.temp}°C</Temp>
-          <Condition>condition : {weather.condition}</Condition>
+          <Temp>{weather.temp}°C</Temp>
+          <Condition>{weather.condition}</Condition>
         </Text>
       </Body>
     </Wrapper>

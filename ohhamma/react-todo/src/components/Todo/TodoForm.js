@@ -1,4 +1,4 @@
-//import React, { useState, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
 
@@ -12,12 +12,18 @@ const Input = styled.input`
   width: 300px;
   height: 40px;
   font-size: 12pt;
+  color: rgba(255, 255, 255, 0.5);
   border: 0px;
   border-radius: 15px;
   outline: none;
   padding-left: 15px;
   padding-right: 15px;
-  background: rgba(25, 19, 8, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+
+  ::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+  font-style: italic;
+}
 `;
 
 const TodoForm = ({ onAdd }) => {
