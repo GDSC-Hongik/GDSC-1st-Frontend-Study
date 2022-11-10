@@ -20,6 +20,9 @@ const Input = styled.input`
   padding-right: 15px;
   background: rgba(0, 0, 0, 0.2);
 
+  :focus {
+    outline: 2px solid rgba(255, 255, 255, 0.15);
+  }
   ::placeholder {
   color: rgba(255, 255, 255, 0.2);
   font-style: italic;
