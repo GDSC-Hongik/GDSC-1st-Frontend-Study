@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 
@@ -6,16 +7,24 @@ const renderCalenderBoard = (
   selectedDay: string,
   handleSelectDate: (v: string) => void,
 ) => {
-  const firstDay = dayjs(selectedDay).startOf('month').day();
-  const daysInMonth = dayjs(selectedDay).daysInMonth();
-  const arr = Array.from({ length: firstDay + daysInMonth }, (v, i) =>
-    i < firstDay
-      ? 0
-      : dayjs(selectedDay)
-          .startOf('month')
-          .set('date', i - 1)
-          .format('MM/DD/YY'),
-  );
+  const initArr = (firstDay: number, daysInMonth: number) => {
+    return Array.from({ length: firstDay + daysInMonth }, (v, i) =>
+      i < firstDay
+        ? 0
+        : dayjs(selectedDay)
+            .startOf('month')
+            .set('date', i - firstDay + 1)
+            .format('MM/DD/YY'),
+    );
+  };
+
+  const [arr, setArr] = useState<(string | 0)[]>([0]);
+
+  useEffect(() => {
+    const firstDay = dayjs(selectedDay).startOf('month').day();
+    const daysInMonth = dayjs(selectedDay).daysInMonth();
+    setArr(initArr(firstDay, daysInMonth));
+  }, [selectedDay]);
 
   const content = arr.map((v, i) => (
     <Item key={v ? v.toString() : `${v}${i}`} isSelected={selectedDay === v}>
@@ -34,6 +43,7 @@ const renderCalenderBoard = (
 export default renderCalenderBoard;
 const Item = styled.div<{ isSelected: Boolean }>`
   width: 21px;
+  height: 35px;
   margin: 8px auto;
   cursor: pointer;
 
