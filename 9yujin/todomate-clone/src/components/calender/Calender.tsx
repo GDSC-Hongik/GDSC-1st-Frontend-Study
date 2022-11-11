@@ -28,7 +28,7 @@ const Calender = () => {
   const handleNextMonth = () => {
     const newDate = dayjs(selectedDay)
       .add(1, 'month')
-      .endOf('month')
+      .startOf('month')
       .format('MM/DD/YY');
     setSelectedDay(newDate);
   };

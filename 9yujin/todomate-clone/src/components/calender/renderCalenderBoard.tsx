@@ -10,7 +10,7 @@ const renderCalenderBoard = (
   const initArr = (firstDay: number, daysInMonth: number) => {
     return Array.from({ length: firstDay + daysInMonth }, (v, i) =>
       i < firstDay
-        ? 0
+        ? null
         : dayjs(selectedDay)
             .startOf('month')
             .set('date', i - firstDay + 1)
@@ -18,7 +18,7 @@ const renderCalenderBoard = (
     );
   };
 
-  const [arr, setArr] = useState<(string | 0)[]>([0]);
+  const [arr, setArr] = useState<(string | null)[]>([null]);
 
   useEffect(() => {
     const firstDay = dayjs(selectedDay).startOf('month').day();
@@ -28,7 +28,7 @@ const renderCalenderBoard = (
 
   const content = arr.map((v, i) => (
     <Item key={v ? v.toString() : `${v}${i}`} isSelected={selectedDay === v}>
-      {v !== 0 && (
+      {v && ( //TODO
         <div onClick={() => handleSelectDate(v)}>
           <TodoCheck fill="#DBDDDF" />
           <span>{dayjs(v).date()}</span>
@@ -45,9 +45,9 @@ const Item = styled.div<{ isSelected: Boolean }>`
   width: 21px;
   height: 35px;
   margin: 8px auto;
-  cursor: pointer;
 
   & > div {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
