@@ -18,6 +18,7 @@ const Diary = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [weather, setWeather] = useState('');
+    const [toggleTitle, setToggle = useState(true);
 
     const getWeather = async(e) => {
         try {
@@ -34,7 +35,7 @@ const Diary = () => {
             alert(err);
         }
     }
-    
+
     useEffect(() => {
         getWeather();
     },[]);
