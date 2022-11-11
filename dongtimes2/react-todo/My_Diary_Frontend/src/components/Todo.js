@@ -164,10 +164,13 @@ Todo.propTypes = {
   setSelectedTodo: PropTypes.func.isRequired,
 };
 
-const BlankItem = styled.div`
-  display: flex;
-  justify-content: center;
+const BlankItem = styled.li`
   text-align: center;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const SaveButtonBox = styled.div`
@@ -258,6 +261,7 @@ const TodoItemList = styled.ul`
   overflow: scroll;
   background-color: rgba(224, 223, 220, 70%);
   border-radius: 20px;
+  position: relative;
 `;
 
 const TodoItem = styled.li`

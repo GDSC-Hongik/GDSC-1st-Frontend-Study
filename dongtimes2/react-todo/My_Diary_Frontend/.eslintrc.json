@@ -39,6 +39,7 @@
         "caseInsensitive": true
       }
       }
-    ]
+    ],
+    "import/no-named-as-default-member": ["off"]
   }
 }

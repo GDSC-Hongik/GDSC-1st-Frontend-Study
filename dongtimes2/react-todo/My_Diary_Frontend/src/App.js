@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import GlobalStyles from './components/GlobalStyles';
 import NotFound from './pages/NotFound';
@@ -10,6 +10,7 @@ function App() {
     <>
       <GlobalStyles />
       <Routes>
+        <Route path="/" element={<Navigate to="/schedule" />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/*" element={<NotFound />} />

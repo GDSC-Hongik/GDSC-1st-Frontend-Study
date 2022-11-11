@@ -8,6 +8,7 @@ import Modal from '../components/Modal';
 import ModalPortal from '../components/ModalPortal';
 import Sidebar from '../components/Sidebar';
 import Todo from '../components/Todo';
+import WeatherInfo from '../components/WeatherInfo';
 import settingState from '../recoil/settingState';
 
 const Schedule = () => {
@@ -24,6 +25,9 @@ const Schedule = () => {
         </SidebarBox>
         <CalendarBox>
           <Calendar />
+          <div className="weather-area">
+            <WeatherInfo />
+          </div>
         </CalendarBox>
         <TodoBox>
           <Todo
@@ -63,6 +67,12 @@ const CalendarBox = styled.div`
   flex-direction: column;
   flex-basis: 55%;
   width: 100%;
+
+  .weather-area {
+    display: flex;
+    justify-content: right;
+  }
+
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
