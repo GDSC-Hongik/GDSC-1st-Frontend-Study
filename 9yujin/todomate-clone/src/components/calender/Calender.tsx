@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 
-const kelvinToCelsius = (kelvin: number) => kelvin - 273.15;
 const days = ['일', '월', '화', '수', '목', '금', '토'];
 
 const Calender = () => {
@@ -13,18 +12,6 @@ const Calender = () => {
   const arr = Array.from({ length: firstDay + daysInMonth }, (v, i) =>
     i < firstDay ? 0 : i - firstDay + 1,
   );
-
-  useEffect(() => {
-    const fetch = async () => {
-      console.log(process.env.REACT_APP_API_KEY);
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${process.env.REACT_APP_API_KEY}`,
-      );
-      const degree = kelvinToCelsius(response.data.main.temp);
-      console.log(degree);
-    };
-    fetch();
-  }, []);
 
   return (
     <Wrapper>
