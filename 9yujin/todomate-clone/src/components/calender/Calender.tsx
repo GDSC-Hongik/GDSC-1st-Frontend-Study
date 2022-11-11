@@ -1,37 +1,29 @@
-import axios from 'axios';
 import dayjs from 'dayjs';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
+import renderCalenderBoard from './renderCalenderBoard';
 
 const days = ['일', '월', '화', '수', '목', '금', '토'];
 
 const Calender = () => {
-  const firstDay = dayjs().startOf('month').day();
-  const daysInMonth = dayjs().daysInMonth();
-  const arr = Array.from({ length: firstDay + daysInMonth }, (v, i) =>
-    i < firstDay ? 0 : i - firstDay + 1,
+  const [selectedDay, setSelectedDay] = useState<string>(
+    dayjs().format('MM/DD/YY'),
   );
+
+  const handleSelectDate = (v: string) => {
+    setSelectedDay(v);
+  };
+
+  const board = renderCalenderBoard(selectedDay, handleSelectDate);
 
   return (
     <Wrapper>
       <Days>
         {days.map((v) => (
-          <div>{v}</div>
+          <div key={v}>{v}</div>
         ))}
       </Days>
-      <Board>
-        {arr.map((v, i) => (
-          <Item key={v + i}>
-            {v !== 0 && (
-              <>
-                <TodoCheck fill="#DBDDDF" />
-                <span>{v}</span>
-              </>
-            )}
-          </Item>
-        ))}
-      </Board>
+      <Board>{board}</Board>
     </Wrapper>
   );
 };
@@ -56,21 +48,5 @@ const Days = styled.div`
   & > div {
     margin: 4px auto;
     font-size: 10px;
-  }
-`;
-
-const Item = styled.div`
-  width: 21px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 10px;
-  color: #b6b6b6;
-  font-weight: 700;
-  margin: 8px auto;
-
-  & > svg {
-    margin-bottom: 4px;
   }
 `;

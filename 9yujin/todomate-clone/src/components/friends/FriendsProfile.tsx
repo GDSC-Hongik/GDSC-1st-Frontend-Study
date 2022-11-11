@@ -55,6 +55,7 @@ const ProfileImage = styled.div<{ image: string }>`
         `}
   background-size: contain;
 `;
+
 const Content = styled.div`
   margin-left: 10px;
   & > div:first-child {
