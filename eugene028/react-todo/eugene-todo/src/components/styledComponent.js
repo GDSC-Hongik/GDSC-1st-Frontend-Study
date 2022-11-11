@@ -1,6 +1,62 @@
 import styled from 'styled-components'
 import DatePicker from "react-datepicker";
-import { createGlobalStyle } from 'styled-components';
+import { NavLink } from "react-router-dom";
+
+//Global
+export const DateSetting = styled.div`
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    .react-datepicker-wrapper {
+        width : 40%;
+    }
+    span {
+        font-size : 12px;
+    }
+`
+//Diary.js
+
+export const DiaryTop = styled.div`
+    h4{
+        margin : 2px;
+        font-size : 15px;
+        display : inline;
+    }
+    .weatherIcon
+    {
+        margin-right : 2rem;
+        float : right;
+    }
+    margin : 2px;
+`
+export  const DiaryBtnCSS = styled(NavLink)`
+    width : 50%;
+    border : none;
+    background : rgba(255, 255, 255, 0.4);
+    border-radius : 10px;
+    padding : 0.5rem;
+    margin : 0.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        background: pink;
+    }
+    color : black;
+    text-decoration: none;
+    cursor : pointer;
+`;
+
+export const TextArea = styled.input`
+    display : flex;
+    width : 90%;
+    height : 250px;
+    margin : 1rem auto;
+    padding : 20px;
+    border-radius : 10px;
+    border : none;
+    
+`
 
 // TodoInsert.jsx 
 export const TodoInsertForm = styled.form`
@@ -32,7 +88,7 @@ export const SubmitButton = styled.button`
     cursor : pointer;
     transition: 0.1s background ease-in;
     &:hover {
-        background: pink;
+        background: pink;}
 `;
 
 //TodoList.js 
@@ -46,10 +102,7 @@ export const NullBox = styled.div`
         display : flex;
         align-items : center;
         justify-content: center;
-        margin-top : 150px;
-        
-
-
+        margin-top : 150px; 
 `
 
 //TodoListItem.js
@@ -127,4 +180,4 @@ export const MyDatePicker = styled(DatePicker)`
     box-sizing : border-box;
     font-size : 12px;
     margin : 20px auto;
-`
+`;
