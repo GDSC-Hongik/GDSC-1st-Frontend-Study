@@ -1,13 +1,18 @@
-import './TodoTemplate.scss';
 import React from 'react';
+
+import {
+    TodoTemplateCSS,
+    AppTitle,
+    Content,
+} from './styledComponent';
 
 const TodoTemplate = ({children}) => {
     return (
-        <div className = "TodoTemplate">
-            <div className = "app-title">나의 기록</div>
-            <div className = "content">{children}</div>
-        </div>
+        <TodoTemplateCSS>
+            <AppTitle>나의 기록</AppTitle>
+            <Content>{children}</Content>
+        </TodoTemplateCSS>
     );
 };
 
-export default TodoTemplate;
+export default React.memo(TodoTemplate);
