@@ -16,7 +16,7 @@ const initialState: IFriend[] = [
   },
   {
     userId: 'user3',
-    name: '김테스트',
+    name: '윤정',
     profileImage: '',
     statusMessage: 'user3',
   },
@@ -25,18 +25,6 @@ const initialState: IFriend[] = [
     name: '이테스트',
     profileImage: '',
     statusMessage: 'user4',
-  },
-  {
-    userId: 'user5',
-    name: '박테스트',
-    profileImage: '',
-    statusMessage: 'user5',
-  },
-  {
-    userId: 'user6',
-    name: '최테스트',
-    profileImage: '',
-    statusMessage: 'user6',
   },
 ];
 
