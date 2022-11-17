@@ -37,7 +37,6 @@ const TodoHome = () => {
       setTodos(myTodoList);
       console.log(myTodoList);
       nextId.current = myTodoList[(myTodoList.length - 1)].id + 1; //useRef이용하여서 저장할 key값을 제대로 설정합니다.
-      console.log("현재 아이디는 : " ,nextId.current)
     }},[]
     )
 
@@ -59,6 +58,8 @@ const TodoHome = () => {
         },
         [todos],
       );
+
+      console.log(date);
 
     return (
         <>
