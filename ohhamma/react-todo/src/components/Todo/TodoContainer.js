@@ -4,15 +4,12 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 480px;
   height: 700px;
   
-  background: #FFFFFF;
-  box-shadow: 3px 4px 9px 5px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 50px;
-  margin: 0 auto;
-  margin-top: 96px;
-  margin-bottom: 32px;
+  margin: 96px 30px 32px auto;
 `;
 
 const TodoContainer = ({ children }) => {

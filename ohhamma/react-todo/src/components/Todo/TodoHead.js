@@ -11,8 +11,7 @@ const Wrapper = styled.div`
   margin-top: 40px;
   margin-bottom: 20px;
   text-align: center;
-
-  color: rgba(69, 75, 102, 0.8);
+  color: rgba(255, 255, 255, 0.5);
 `;
 
 const TodoHead = ({ title }) => {

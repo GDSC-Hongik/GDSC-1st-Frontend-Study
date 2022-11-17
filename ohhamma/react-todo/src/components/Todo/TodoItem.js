@@ -10,21 +10,21 @@ const Item = styled.li`
     switch (props.done) {
       case "on":
         return css`
-          color: rgba(69, 75, 102, 0.3);
+          color: rgba(255, 255, 255, 0.2);
           font-weight: 400;
           font-style: unset;
           text-decoration: line-through;
         `;
       default:
         return css`
-          color: rgba(69, 75, 102, 0.6);
+          color: rgba(255, 255, 255, 0.4);
           font-weight: 600;
         `;
     }
   }}
   min-height: 24px;
-  padding: 12px 7px 9px 7px;
-  border-bottom: 1px solid rgba(25, 19, 8, 0.1);
+  padding: 12px 7px 9px 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 15px;
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@ const Buttons = styled.div`
 `;
 
 const DoneButton = styled(CheckSolid)`
-  fill: ${props => props.done === 'on' ? 'rgba(255, 99, 71, 0.6)' : 'rgba(154, 205, 50, 0.7)'};
+  fill: ${props => props.done === 'on' ? 'rgba(255, 99, 71, 0.6)' : 'rgba(154, 205, 50, 0.6)'};
   &:hover {
     cursor: pointer;
     width: 22px;
@@ -71,11 +71,11 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
             onClick={() => onToggle(id)}
             width={20} height={20}
             done={done ? 'on' : 'off'}
-            fill="rgba(156, 163, 219, 0.7)" />
+            fill="rgba(154, 205, 50, 0.6)" />
           <DelButton
             onClick={() => onDel(id)}
             width={17} height={17}
-            fill="rgba(50, 42, 38, 0.4)" />
+            fill="rgba(255, 255, 255, 0.2)" />
           </Buttons>
       </Item>
     </Wrapper>
