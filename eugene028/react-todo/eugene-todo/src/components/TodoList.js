@@ -1,10 +1,13 @@
 import React from 'react';
 import TodoListItem from './TodoListItem';
+import { todoState } from '../stores/Atom';
+import { useRecoilValue } from 'recoil';
 import {
     TodoListCSS, NullBox
 } from './styledComponent';
 
-const TodoList = ({todos, onRemove, onToggle}) => {
+const TodoList = ({onRemove, onToggle}) => {
+    const todos = useRecoilValue(todoState);
     return (
         <TodoListCSS>
             {todos.length === 0 && 

@@ -63,9 +63,6 @@ const Diary = () => {
           };
     }
     
-    const mergeplz = () => {
-
-    }
 
     let contentId = useRef(0);
     const onInsert = useCallback(
