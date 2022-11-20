@@ -7,15 +7,15 @@ import { ko } from 'date-fns/esm/locale';
 import "react-datepicker/dist/react-datepicker.css";
 import useTodo from '../hooks/useTodo';
 import { useRecoilState } from 'recoil';
-import { todoState, todoId } from '../stores/Atom'
+import { todoState, todoId, dateState } from '../stores/Atom'
 import {
   MyDatePicker, DiaryBtnCSS, DateSetting
 } from '../components/styledComponent';
 
 
 const TodoHome = () => {
-  const [date, setDate] = useState(new Date());
-  const [, setTodos] = useRecoilState(todoState);
+  const [date, setDate] = useRecoilState(dateState);
+  const [todos, setTodos] = useRecoilState(todoState);
   const [, setId] = useRecoilState(todoId);
   const { todoInsert, todoRemove, todoToggle } = useTodo();
 
@@ -32,17 +32,11 @@ const TodoHome = () => {
     loadData();
     },[])
 
+    console.log(date);
   /*사용자에게 입력받은 값 저장*/
-  var todayDate = new Date();
-  var todayDateValue = todayDate.toLocaleString().slice(0,13).replace(/ /g,"");
-  var settingDate = date.toLocaleDateString().replace(/ /g,"");
-
-  console.log('todayDate 형식 : ' + typeof(todayDateValue));
-  console.log('settingDate 형식 : ' + typeof(settingDate));
-
-  console.log('날짜값 ID :' + settingDate);
-  //파싱완료
-  console.log('오늘의 날짜 :' + todayDateValue);
+ // var todayDate = new Date();
+  //var todayDateValue = todayDate.toLocaleString().slice(0,13).replace(/ /g,"");
+  //var settingDate = date.toLocaleDateString().replace(/ /g,"");
 
     return (
         <>
@@ -51,8 +45,8 @@ const TodoHome = () => {
                 <span>날짜 설정하기</span>
                 <MyDatePicker 
                     dateFormat = "yyyy/MM/dd" 
-                    selected = {date} 
-                    onChange = {date => setDate(date)}
+                    selected = { date } 
+                    onChange = {(date) => setDate(date)}
                     locale = { ko } 
                     placeholderText='Weeks start on Monday' />
                 </DateSetting>

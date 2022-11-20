@@ -5,11 +5,14 @@ const useTodo = () => {
     const [todos, setTodos] = useRecoilState(todoState);
     const [id, setId] = useRecoilState(todoId);
 
-  const todoInsert = (text, checked) => {
+  const todoInsert = (text, checked, day, month, year) => {
       const newtodo ={
         id : id,
         text : text,
         checked : checked,
+        day : day,
+        month : month,
+        year : year 
       };
       setId(id + 1);
       setTodos(todos => todos.concat(newtodo));
