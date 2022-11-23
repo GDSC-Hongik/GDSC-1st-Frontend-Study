@@ -1,10 +1,16 @@
 import uuid from 'react-uuid';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { ICategory } from '../interfaces/ICategory';
+import selectedDateState from '../stores/selectedDate';
+import selectedProfileState from '../stores/selectedProfile';
 import { todoState } from '../stores/todo';
 
-const useTodo = () => {
-  const [todo, setTodo] = useRecoilState(todoState);
+const useHandleTodo = () => {
+  const selectedDate = useRecoilValue(selectedDateState);
+  const selectedProfile = useRecoilValue(selectedProfileState);
+  const [todo, setTodo] = useRecoilState(
+    todoState([selectedDate, selectedProfile]),
+  );
 
   const insertTodo = (inputValue: string, category: ICategory) => {
     if (inputValue) {
@@ -41,4 +47,4 @@ const useTodo = () => {
   return { insertTodo, editTodo, toggleTodo, deleteTodo };
 };
 
-export default useTodo;
+export default useHandleTodo;

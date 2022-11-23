@@ -3,7 +3,7 @@ import { ReactComponent as ThreeDot } from '../../assets/vectors/three-dots.svg'
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
 import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 import { ITodoItem } from '../../interfaces/ITodoItem';
-import useTodo from '../../hooks/useTodo';
+import useTodo from '../../hooks/useHandleTodo';
 import useBottomSheet from '../../hooks/useBottomSheet';
 import React from 'react';
 

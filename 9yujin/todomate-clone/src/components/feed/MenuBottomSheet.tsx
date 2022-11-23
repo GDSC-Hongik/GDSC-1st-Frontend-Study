@@ -6,7 +6,7 @@ import bin from '../../assets/images/bin.png';
 import useBottomSheet from '../../hooks/useBottomSheet';
 import { useSetRecoilState } from 'recoil';
 import { editingState } from '../../stores/editing';
-import useTodo from '../../hooks/useTodo';
+import useTodo from '../../hooks/useHandleTodo';
 
 interface MenuBottomSheetProps {}
 
