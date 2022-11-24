@@ -1,9 +1,11 @@
-import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
 import { ButtonHTMLAttributes, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
-import useGetTodoCount from './useGetTodoCount';
+import getSortedArray from '../../utils/getSoritedArray';
+import TodoIconSvg from './TodoIconSvg';
+import useGetTodoInfo from './useGetTodoInfo';
+import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 
 const renderCalenderBoard = (
   selectedDay: string,
@@ -59,13 +61,17 @@ const CalenderItem = ({
   isSelected,
   ...props
 }: CalenderItemProps) => {
-  const count = useGetTodoCount(date, userId);
+  const { count, colors, isDone } = useGetTodoInfo(date, userId);
+  const colorSet = new Set(getSortedArray(colors));
   return (
-    <button {...props}>
-      <span className="count">{count !== 0 && count}</span>
-      <TodoCheck fill="#DBDDDF" />
+    <>
+      <button {...props}>
+        <span className="count">{count !== 0 && count}</span>
+        <TodoIconSvg colors={Array.from(colorSet)} />
+        {isDone && <CheckIcon className="check" />}
+      </button>
       <span className="date">{dayjs(date).date()}</span>
-    </button>
+    </>
   );
 };
 
@@ -73,39 +79,45 @@ const Item = styled.div<{ isSelected: Boolean }>`
   width: 21px;
   height: 35px;
   margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 
   & > button {
+    height: 21px;
     position: relative;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    font-weight: 700;
+    margin-bottom: 4px;
 
     .count {
       position: absolute;
       padding-top: 3px;
       font-size: 13px;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      font-weight: 700;
     }
 
-    .date {
-      color: ${({ isSelected }) => (isSelected ? '#000' : '#b6b6b6')};
-      ${({ isSelected }) =>
-        isSelected
-          ? css`
-              color: #000;
-              font-size: 11px;
-              text-decoration: underline;
-            `
-          : css`
-              color: #b6b6b6;
-              font-size: 10px;
-            `}
+    .check {
+      position: absolute;
     }
   }
-  svg {
-    margin-bottom: 4px;
+
+  .date {
+    font-weight: 700;
+    color: ${({ isSelected }) => (isSelected ? '#000' : '#b6b6b6')};
+    ${({ isSelected }) =>
+      isSelected
+        ? css`
+            color: #000;
+            font-size: 11px;
+            text-decoration: underline;
+          `
+        : css`
+            color: #b6b6b6;
+            font-size: 10px;
+          `}
   }
 `;

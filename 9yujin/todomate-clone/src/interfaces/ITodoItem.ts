@@ -6,3 +6,6 @@ export interface ITodoItem {
   isDone: boolean;
   category: ICategory;
 }
+
+export type ITodoItemKey = [string, string];
+export type ITodoItemSelectorKey = [string, string, string];

@@ -10,19 +10,19 @@ const initialState: IFriend[] = [
   },
   {
     userId: 'user2',
-    name: '유진',
+    name: '경민',
     profileImage: 'https://i.ibb.co/MgmDcz1/1021805078815985664.webp',
     statusMessage: '주니어 PM이 되기 위한 노력',
   },
   {
     userId: 'user3',
-    name: '윤정',
+    name: '세환',
     profileImage: '',
     statusMessage: 'user3',
   },
   {
     userId: 'user4',
-    name: '이테스트',
+    name: '민준',
     profileImage: '',
     statusMessage: 'user4',
   },
