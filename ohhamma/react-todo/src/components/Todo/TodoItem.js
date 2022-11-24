@@ -46,8 +46,8 @@ const DoneButton = styled(CheckSolid)`
   fill: ${props => props.done === 'on' ? 'rgba(255, 99, 71, 0.6)' : 'rgba(154, 205, 50, 0.6)'};
   &:hover {
     cursor: pointer;
-    width: 22px;
-    height: 22px;
+    width: 21.5px;
+    height: 21.5px;
   }
 `;
 
@@ -55,8 +55,8 @@ const DelButton = styled(XSolid)`
   margin-top: 1px;
   &:hover {
     cursor: pointer;
-    width: 19px;
-    height: 19px;
+    width: 18.5px;
+    height: 18.5px;
   }
 `;
 
@@ -75,7 +75,7 @@ const TodoItem = ({ todo }) => {
             )}
             width={20} height={20}
             done={done ? 'on' : 'off'}
-            fill="rgba(154, 205, 50, 0.6)" />
+            fill="rgba(255, 255, 255, 0.15)" />
           <DelButton
             onClick={() => dispatch(
               { type: 'DELETE', id: id }

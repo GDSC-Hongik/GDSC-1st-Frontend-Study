@@ -1,13 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 import useWeather from '../../hooks/useWeather';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 96px auto 0px 30px;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 25px;
   width: 230px;
   height: 140px;

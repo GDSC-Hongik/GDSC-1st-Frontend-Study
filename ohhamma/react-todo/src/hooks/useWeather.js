@@ -16,6 +16,7 @@ const useWeather = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(url);
+      console.log(res);
       setWeather({ 
         temp: Math.round(res.data.main.temp),
         condition: res.data.weather[0].main
@@ -30,7 +31,6 @@ const useWeather = () => {
 
   useEffect(() => {
     fetchData();
-  // eslint-disable-next-line
   }, [])
 
   return [weather, icon, city, country];

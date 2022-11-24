@@ -12,7 +12,12 @@ import styled from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   body {
     position: absolute;
-    background: url(${background}) no-repeat center fixed;
+    background-image: url(${background});
+    background-color: rgba(0, 0, 0, 0.25);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     width: 100%;
     height: 100%;
     background-size: cover;
