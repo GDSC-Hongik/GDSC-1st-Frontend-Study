@@ -4,9 +4,13 @@ import styled from 'styled-components';
 const DetailTodo = ({ selectedTodo }) => {
   return (
     <DetailTodoBox>
-      <TitleBox>{selectedTodo.title}</TitleBox>
+      <TitleBox>제목: {selectedTodo.title}</TitleBox>
       <div className="blank-area" />
-      <ContentBox>{selectedTodo.content}</ContentBox>
+      <DateBox>날짜: {selectedTodo.createdAt}</DateBox>
+      <div className="blank-area" />
+      <ContentBox>
+        {selectedTodo.content} {selectedTodo.isChecked}
+      </ContentBox>
     </DetailTodoBox>
   );
 };
@@ -28,12 +32,20 @@ const DetailTodoBox = styled.div`
   }
 `;
 
+const DateBox = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background-color: white;
+  white-space: pre-wrap;
+  flex-basis: 10%;
+`;
+
 const TitleBox = styled.div`
   display: flex;
   align-items: center;
-  padding: 5px 15px;
+  padding: 0 15px;
   background-color: white;
-  border-radius: 10px;
   white-space: pre-wrap;
   flex-basis: 15%;
 `;
@@ -42,7 +54,6 @@ const ContentBox = styled.div`
   display: flex;
   padding: 15px;
   background-color: white;
-  border-radius: 10px;
   white-space: pre-wrap;
   flex-basis: 80%;
   overflow: scroll;

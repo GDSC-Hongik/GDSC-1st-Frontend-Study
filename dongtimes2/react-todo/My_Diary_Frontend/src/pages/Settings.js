@@ -4,16 +4,29 @@ import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
 import { imageData } from '../constants/Constants';
 import settingState from '../recoil/settingState';
+import randomImageGenerator from '../utils/randomImageGenerator';
+
 const Settings = () => {
   const [settings, setSettings] = useRecoilState(settingState);
+  const handleChangeBackground = async (type) => {
+    if (type === 'random') {
+      const image = await randomImageGenerator();
+      console.log(image);
 
-  const handleChangeBackground = (type) => {
-    setSettings((prev) => {
-      return {
-        ...prev,
-        image: type,
-      };
-    });
+      setSettings((prev) => {
+        return {
+          ...prev,
+          image,
+        };
+      });
+    } else {
+      setSettings((prev) => {
+        return {
+          ...prev,
+          image: type,
+        };
+      });
+    }
   };
 
   return (
@@ -55,6 +68,12 @@ const Settings = () => {
               onClick={() => handleChangeBackground(imageData.dubai)}
             >
               두바이
+            </button>
+            <button
+              type="button"
+              onClick={() => handleChangeBackground('random')}
+            >
+              랜덤
             </button>
           </div>
         </SettingsBox>

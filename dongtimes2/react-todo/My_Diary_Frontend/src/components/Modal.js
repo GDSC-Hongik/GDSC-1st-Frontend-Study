@@ -28,7 +28,7 @@ const BackgroundBox = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(10, 10, 10, 50%);
 `;
 
 const ModalContentbox = styled.div`
@@ -36,10 +36,10 @@ const ModalContentbox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: lightgray;
+  background-color: rgba(200, 200, 200, 40%);
   width: 50%;
   height: 50%;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 30px;
 `;
 

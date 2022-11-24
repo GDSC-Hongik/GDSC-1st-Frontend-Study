@@ -29,3 +29,19 @@ export const getWeatherData = async () => {
     console.error(error);
   }
 };
+
+export const loadTodo = async (type, date) => {
+  try {
+    const result = axios.get(process.env.REACT_APP_SERVER_URL + '/todo', {
+      params: { type, date },
+    });
+
+    if (result.data?.code >= 400) {
+      throw 'Server Response Error';
+    }
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
