@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactComponent as CheckSolid } from '../../assets/check-solid.svg';
 import { ReactComponent as XSolid } from '../../assets/x-solid.svg';
 import styled, { css } from 'styled-components';
+import { useTodoDispatch } from './TodoContext';
 
 const Wrapper = styled.div``;
 
@@ -59,8 +60,9 @@ const DelButton = styled(XSolid)`
   }
 `;
 
-const TodoItem = ({ todo, onDel, onToggle }) => {
+const TodoItem = ({ todo }) => {
   const {id, text, done} = todo;
+  const dispatch = useTodoDispatch();
 
   return (
     <Wrapper>
@@ -68,12 +70,16 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
         <TodoText>{text}</TodoText>
         <Buttons>
           <DoneButton
-            onClick={() => onToggle(id)}
+            onClick={() => dispatch(
+              { type: 'TOGGLE', id: id }
+            )}
             width={20} height={20}
             done={done ? 'on' : 'off'}
             fill="rgba(154, 205, 50, 0.6)" />
           <DelButton
-            onClick={() => onDel(id)}
+            onClick={() => dispatch(
+              { type: 'DELETE', id: id }
+            )}
             width={17} height={17}
             fill="rgba(255, 255, 255, 0.2)" />
           </Buttons>

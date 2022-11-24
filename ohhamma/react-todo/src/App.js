@@ -1,11 +1,12 @@
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
 import TodoContainer from './components/Todo/TodoContainer';
 import TodoHead from './components/Todo/TodoHead';
 import TodoForm from './components/Todo/TodoForm';
 import TodoList from './components/Todo/TodoList';
 import WeatherBox from './components/Weather/WeatherBox';
-import useTodos from './hooks/useTodos';
+import { TodoProvider } from './components/Todo/TodoContext';
 import background from './assets/background1.png';
-import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -42,21 +43,18 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const TODOS_KEY = "todos";
-  const [todos, onAdd, onDel, onToggle] = useTodos([], TODOS_KEY);
-
   return (
-    <>
+    <TodoProvider>
       <GlobalStyle />
       <Wrapper>
         <TodoContainer>
           <TodoHead title='투두리스트' />
-          <TodoForm onAdd={onAdd} />
-          <TodoList todos={todos} onDel={onDel} onToggle={onToggle}/>
+          <TodoForm />
+          <TodoList />
         </TodoContainer>
         <WeatherBox/>
       </Wrapper>
-    </>
+    </TodoProvider>
   );
 }
 

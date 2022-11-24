@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
+import { useTodoDispatch } from "../components/Todo/TodoContext";
 
 const useInput = (initialValue, onAdd) => {
   const [text, setText] = useState(initialValue);
+  const dispatch = useTodoDispatch();
 
   const onChange = useCallback(
     event => {
@@ -11,9 +13,15 @@ const useInput = (initialValue, onAdd) => {
   const onSubmit = useCallback(
     event => {
     event.preventDefault();
-    onAdd(text);
+    dispatch({
+      type: 'ADD',
+      todo: {
+        id: Date.now(),
+        text,
+        done: false
+    }});
     setText('');
-  }, [onAdd, text]);
+  }, [dispatch, text]);
 
   return [text, onChange, onSubmit];
 }
