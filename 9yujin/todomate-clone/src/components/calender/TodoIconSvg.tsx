@@ -3,23 +3,23 @@ interface TodoIconSvgProps {
 }
 
 const TodoIconSvg = ({ colors }: TodoIconSvgProps) => {
-  let fillArray = [colors[0], colors[0], colors[0], colors[0]];
-  console.log(colors.length);
+  let fill = [colors[0], colors[0], colors[0], colors[0]];
+
   switch (colors.length) {
-    case 0:
-      fillArray = ['#DBDDDF', '#DBDDDF', '#DBDDDF', '#DBDDDF'];
-      break;
     case 1:
-      fillArray = [colors[0], colors[0], colors[0], colors[0]];
+      fill = [colors[0], colors[0], colors[0], colors[0]];
       break;
     case 2:
-      fillArray = [colors[0], colors[1], colors[1], colors[0]];
+      fill = [colors[0], colors[1], colors[1], colors[0]];
       break;
     case 3:
-      fillArray = [colors[0], colors[0], colors[1], colors[2]];
+      fill = [colors[0], colors[0], colors[1], colors[2]];
       break;
     case 4:
-      fillArray = [colors[0], colors[1], colors[2], colors[3]];
+      fill = [colors[0], colors[1], colors[2], colors[3]];
+      break;
+    default:
+      fill = ['#DBDDDF', '#DBDDDF', '#DBDDDF', '#DBDDDF'];
       break;
   }
 
@@ -35,28 +35,28 @@ const TodoIconSvg = ({ colors }: TodoIconSvgProps) => {
         cx="6.46154"
         cy="6.46154"
         r="6.46154"
-        fill={fillArray[0]}
+        fill={fill[0]}
         fillOpacity={'0.9'}
       />
       <circle
         cx="6.46154"
         cy="14.5387"
         r="6.46154"
-        fill={fillArray[1]}
+        fill={fill[1]}
         fillOpacity={'0.9'}
       />
       <circle
         cx="14.5387"
         cy="14.5387"
         r="6.46154"
-        fill={fillArray[2]}
+        fill={fill[2]}
         fillOpacity={'0.9'}
       />
       <circle
         cx="14.5387"
         cy="6.46154"
         r="6.46154"
-        fill={fillArray[3]}
+        fill={fill[3]}
         fillOpacity={'0.9'}
       />
     </svg>

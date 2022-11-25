@@ -1,10 +1,8 @@
 import dayjs from 'dayjs';
 import { ButtonHTMLAttributes, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { ReactComponent as TodoCheck } from '../../assets/vectors/todo-check.svg';
-import getSortedArray from '../../utils/getSoritedArray';
 import TodoIconSvg from './TodoIconSvg';
-import useGetTodoInfo from './useGetTodoInfo';
+import useTodoInfo from './useTodoInfo';
 import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 
 const renderCalenderBoard = (
@@ -61,13 +59,12 @@ const CalenderItem = ({
   isSelected,
   ...props
 }: CalenderItemProps) => {
-  const { count, colors, isDone } = useGetTodoInfo(date, userId);
-  const colorSet = new Set(getSortedArray(colors));
+  const { count, colorSetArr, isDone } = useTodoInfo(date, userId);
   return (
     <>
       <button {...props}>
         <span className="count">{count !== 0 && count}</span>
-        <TodoIconSvg colors={Array.from(colorSet)} />
+        <TodoIconSvg colors={colorSetArr} />
         {isDone && <CheckIcon className="check" />}
       </button>
       <span className="date">{dayjs(date).date()}</span>

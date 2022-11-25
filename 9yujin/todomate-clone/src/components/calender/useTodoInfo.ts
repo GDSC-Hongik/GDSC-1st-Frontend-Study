@@ -1,14 +1,20 @@
 import { useRecoilValue } from 'recoil';
 import { todoState } from '../../stores/todo';
+import getSortedArray from '../../utils/getSoritedArray';
 
-const useGetTodoInfo = (date: string, userId: string) => {
+const useTodoInfo = (date: string, userId: string) => {
   const todos = useRecoilValue(todoState([date, userId]));
+
   const colors = todos
     .filter((todo) => todo.isDone === true)
     .map((done) => done.category.color);
+  const colorSet = new Set(getSortedArray(colors));
+  const colorSetArr = Array.from(colorSet);
+
   const count = todos.filter((todo) => !todo.isDone).length;
   const isDone = count === 0 && todos.length !== 0;
-  return { count, colors, isDone };
+
+  return { count, colorSetArr, isDone };
 };
 
-export default useGetTodoInfo;
+export default useTodoInfo;
