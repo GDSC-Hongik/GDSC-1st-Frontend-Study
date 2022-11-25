@@ -112,12 +112,12 @@ const Item = styled.div<{ isSelected: Boolean }>`
       isSelected
         ? css`
             color: #000;
-            font-size: 11px;
+            font-size: 12px;
             text-decoration: underline;
           `
         : css`
             color: #b6b6b6;
-            font-size: 10px;
+            font-size: 11px;
           `}
   }
 `;

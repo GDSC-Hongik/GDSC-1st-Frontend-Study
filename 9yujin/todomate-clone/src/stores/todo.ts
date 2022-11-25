@@ -2,7 +2,7 @@ import { atom, atomFamily, selectorFamily } from 'recoil';
 import {
   ITodoItem,
   ITodoItemKey,
-  ITodoItemSelectorKey,
+  ITodoItemSelectorParams,
 } from '../interfaces/ITodoItem';
 
 const initialState: ITodoItem[] = [
@@ -42,13 +42,13 @@ export const todoState = atomFamily<ITodoItem[], ITodoItemKey>({
 
 export const todosByCategory = selectorFamily<
   ITodoItem[],
-  ITodoItemSelectorKey
+  ITodoItemSelectorParams
 >({
   key: 'todoSelector',
   get:
-    (params: ITodoItemSelectorKey) =>
+    ({ todoItemKey, categoryLabel }: ITodoItemSelectorParams) =>
     ({ get }) =>
-      get(todoState([params[0], params[1]])).filter(
-        (todo) => todo.category.label === params[2],
+      get(todoState(todoItemKey)).filter(
+        (todo) => todo.category.label === categoryLabel,
       ),
 });

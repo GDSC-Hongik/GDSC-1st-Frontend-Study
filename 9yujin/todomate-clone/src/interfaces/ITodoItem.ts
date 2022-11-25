@@ -7,5 +7,16 @@ export interface ITodoItem {
   category: ICategory;
 }
 
+/**
+ * @type [selectedDate, selectedProfile]
+ */
 export type ITodoItemKey = [string, string];
-export type ITodoItemSelectorKey = [string, string, string];
+
+/**
+ * @type [selectedDate, selectedProfile, category label]
+ */
+//export type ITodoItemSelectorKey = [string, string, string];
+export type ITodoItemSelectorParams = {
+  todoItemKey: ITodoItemKey;
+  categoryLabel: string;
+};

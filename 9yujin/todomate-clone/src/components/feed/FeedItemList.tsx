@@ -13,7 +13,10 @@ const FeedItemList = ({ category }: { category: ICategory }) => {
   const selectedDate = useRecoilValue(selectedDateState);
   const selectedProfile = useRecoilValue(selectedProfileState);
   const todos = useRecoilValue(
-    todosByCategory([selectedDate, selectedProfile, category.label]),
+    todosByCategory({
+      todoItemKey: [selectedDate, selectedProfile],
+      categoryLabel: category.label,
+    }),
   );
   const editing = useRecoilValue(editingState);
   return (
