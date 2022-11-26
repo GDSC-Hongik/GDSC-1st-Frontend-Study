@@ -1,5 +1,9 @@
-import { atom, selectorFamily } from 'recoil';
-import { ITodoItem } from '../interfaces/ITodoItem';
+import { atom, atomFamily, selectorFamily } from 'recoil';
+import {
+  ITodoItem,
+  ITodoItemKey,
+  ITodoItemSelectorParams,
+} from '../interfaces/ITodoItem';
 
 const initialState: ITodoItem[] = [
   {
@@ -31,15 +35,20 @@ const initialState: ITodoItem[] = [
   },
 ];
 
-export const todoState = atom<ITodoItem[]>({
+export const todoState = atomFamily<ITodoItem[], ITodoItemKey>({
   key: 'todo',
-  default: initialState,
+  default: [],
 });
 
-export const todosByCategory = selectorFamily<ITodoItem[], string>({
+export const todosByCategory = selectorFamily<
+  ITodoItem[],
+  ITodoItemSelectorParams
+>({
   key: 'todoSelector',
   get:
-    (categoryName: string) =>
+    ({ todoItemKey, categoryLabel }: ITodoItemSelectorParams) =>
     ({ get }) =>
-      get(todoState).filter((todo) => todo.category.label === categoryName),
+      get(todoState(todoItemKey)).filter(
+        (todo) => todo.category.label === categoryLabel,
+      ),
 });

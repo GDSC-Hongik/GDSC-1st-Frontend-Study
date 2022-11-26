@@ -1,7 +1,7 @@
 import { useSetRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { IFriend } from '../../interfaces/IFriend';
-import selectedState from '../../stores/selected';
+import selectedProfileState from '../../stores/selectedProfile';
 
 interface FriendsIconProps {
   friend: IFriend;
@@ -9,7 +9,7 @@ interface FriendsIconProps {
 }
 
 const FriendsIcon = ({ friend, selected }: FriendsIconProps) => {
-  const setSelectedProfile = useSetRecoilState(selectedState);
+  const setSelectedProfile = useSetRecoilState(selectedProfileState);
   const selectProfile = () => {
     setSelectedProfile(friend.userId);
   };

@@ -1,17 +1,17 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { friendsState } from '../../stores/friends';
-import selectedState from '../../stores/selected';
+import selectedProfileState from '../../stores/selectedProfile';
 import FriendsIcon from './FriendsIcon';
 
 const Friends = () => {
   const friends = useRecoilValue(friendsState);
-  const selectedId = useRecoilValue(selectedState);
+  const selectedProfile = useRecoilValue(selectedProfileState);
   return (
     <Wrapper>
       <FriendsIcon
         friend={friends[0]}
-        selected={selectedId === friends[0].userId}
+        selected={selectedProfile === friends[0].userId}
       />
       <FriendsList>
         {friends.map(
@@ -19,7 +19,7 @@ const Friends = () => {
             index !== 0 && (
               <FriendsIcon
                 friend={friend}
-                selected={selectedId === friend.userId}
+                selected={selectedProfile === friend.userId}
                 key={friend.userId}
               />
             ),

@@ -1,39 +1,44 @@
 import dayjs from 'dayjs';
-import { useState } from 'react';
 import styled from 'styled-components';
 import renderCalenderBoard from './renderCalenderBoard';
 import left from '../../assets/images/calenderLeft.png';
 import right from '../../assets/images/calenderRight.png';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import selectedDateState from '../../stores/selectedDate';
+import selectedProfileState from '../../stores/selectedProfile';
 
 const days = ['일', '월', '화', '수', '목', '금', '토'];
 
 const Calender = () => {
-  const [selectedDay, setSelectedDay] = useState<string>(
-    dayjs().format('MM/DD/YY'),
-  );
-  const splited = selectedDay.split('/');
+  const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
+  const selectedProfile = useRecoilValue(selectedProfileState);
+  const splited = selectedDate.split('/');
 
   const handleSelectDate = (v: string) => {
-    setSelectedDay(v);
+    setSelectedDate(v);
   };
 
   const handlePrevMonth = () => {
-    const newDate = dayjs(selectedDay)
+    const newDate = dayjs(selectedDate)
       .subtract(1, 'month')
       .endOf('month')
       .format('MM/DD/YY');
-    setSelectedDay(newDate);
+    setSelectedDate(newDate);
   };
 
   const handleNextMonth = () => {
-    const newDate = dayjs(selectedDay)
+    const newDate = dayjs(selectedDate)
       .add(1, 'month')
       .startOf('month')
       .format('MM/DD/YY');
-    setSelectedDay(newDate);
+    setSelectedDate(newDate);
   };
 
-  const board = renderCalenderBoard(selectedDay, handleSelectDate);
+  const board = renderCalenderBoard(
+    selectedDate,
+    selectedProfile,
+    handleSelectDate,
+  );
 
   return (
     <Wrapper>

@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components';
 import defaultImage from '../../assets/images/profileDefaultImage.png';
 import useWeather from '../../hooks/useWeather';
 import { selectUserById } from '../../stores/friends';
-import selectedState from '../../stores/selected';
+import selectedProfileState from '../../stores/selectedProfile';
 
 const FriendsProfile = () => {
-  const selectedId = useRecoilValue(selectedState);
+  const selectedId = useRecoilValue(selectedProfileState);
   const [selectedProfile] = useRecoilValue(selectUserById(selectedId));
   const { degree, icon } = useWeather();
 
