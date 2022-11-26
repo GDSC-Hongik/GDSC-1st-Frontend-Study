@@ -18,7 +18,7 @@ const Diary = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [weather, setWeather] = useState('');
-    const [toggleTitle, setToggle = useState(true);
+    const [toggleTitle, setToggle] = useState(true);
 
     const getWeather = async(e) => {
         try {
@@ -26,6 +26,7 @@ const Diary = () => {
                 method : 'get',
                 url : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
             })
+            console.log(weatherData.data);
             setWeather({
                 id : weatherData.data.weather[0].id,
                 main : weatherData.data.weather[0].main
@@ -46,9 +47,9 @@ const Diary = () => {
         // eslint-disable-next-line default-case
         switch (weatherIcon) {
             case 0:
-              return <TiWeatherSunny size="2rem" color="white" />;
+              return <TiWeatherSunny size="2rem" color="white" />; 
             case 2:
-              return <TiWeatherCloudy size="2rem" color="white" />;
+              return <TiWeatherCloudy size="2rem" color="white" />; 
             case 3:
               return <TiWeatherShower size="2rem" color="white" />;
             case 5:
@@ -61,6 +62,7 @@ const Diary = () => {
               return <TiWeatherCloudy size="2rem" color="white" />;
           };
     }
+    
 
     let contentId = useRef(0);
     const onInsert = useCallback(

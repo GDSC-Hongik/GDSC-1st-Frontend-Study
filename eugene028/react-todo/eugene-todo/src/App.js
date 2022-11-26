@@ -4,10 +4,10 @@ import Diary from './pages/Diary';
 
 function App() {
   return (
-    <Routes>
-      <Route path = '/' element = {<TodoHome />} />
-      <Route path = '/diary' element = {<Diary />}/>
-    </Routes>
+      <Routes>
+        <Route path = '/' element = {<TodoHome />} />
+        <Route path = '/diary' element = {<Diary />}/>
+      </Routes>
   );
 }
 
