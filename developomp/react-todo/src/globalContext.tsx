@@ -8,9 +8,8 @@ import axios from "axios"
  * Type and constant definitions
  */
 
-export interface TodoList {
-	[key: string]: string
-}
+export type listID = string
+export type itemID = string
 
 interface WeatherData {
 	hourly: {
@@ -22,22 +21,34 @@ interface WeatherData {
 }
 
 export interface IGlobalState {
-	todo: TodoList
+	todo: {
+		[key: listID]: {
+			[key: itemID]: string
+		}
+	}
 	pageTitle: string
 	weatherData: WeatherData
 }
 
 export type GlobalAction =
 	| {
-			type: ActionsEnum.ADD_TODO
+			type: ActionsEnum.ADD_LIST
 	  }
 	| {
-			type: ActionsEnum.REMOVE_TODO
-			payload: string
+			type: ActionsEnum.DEL_LIST
+			payload: { listID: listID }
 	  }
 	| {
-			type: ActionsEnum.UPDATE_TODO
-			payload: { key: string; content: string }
+			type: ActionsEnum.ADD_ITEM
+			payload: { listID: listID }
+	  }
+	| {
+			type: ActionsEnum.DEL_ITEM
+			payload: { listID: listID; itemID: itemID }
+	  }
+	| {
+			type: ActionsEnum.UPDATE_ITEM
+			payload: { listID: listID; itemID: itemID; content: string }
 	  }
 	| {
 			type: ActionsEnum.UPDATE_WEATHER
@@ -53,9 +64,11 @@ export interface IGlobalContext {
 }
 
 export enum ActionsEnum {
-	ADD_TODO,
-	REMOVE_TODO,
-	UPDATE_TODO,
+	ADD_LIST,
+	DEL_LIST,
+	ADD_ITEM,
+	DEL_ITEM,
+	UPDATE_ITEM,
 	UPDATE_WEATHER,
 	UPDATE_PATHNAME,
 }
@@ -73,8 +86,8 @@ const pathnameToTitle = {
  * Code starts here
  */
 
-function saveToLocalStorage(todo: any) {
-	window.localStorage.setItem(LocalStorageKey.TODO, JSON.stringify(todo))
+function saveState(key: LocalStorageKey, value: any) {
+	window.localStorage.setItem(key, JSON.stringify(value))
 }
 
 const defaultState: IGlobalState = {
@@ -95,20 +108,40 @@ export const globalContext = createContext({} as IGlobalContext)
 
 async function reducer(state = defaultState, action: GlobalAction) {
 	switch (action.type) {
-		case ActionsEnum.ADD_TODO:
-			state.todo[nanoid()] = ""
+		case ActionsEnum.ADD_LIST: {
+			state.todo[nanoid()] = {}
+			saveState(LocalStorageKey.TODO, state.todo)
 			break
+		}
 
-		case ActionsEnum.REMOVE_TODO:
-			delete state.todo[action.payload]
+		case ActionsEnum.DEL_LIST: {
+			const { listID } = action.payload
+			delete state.todo[listID]
+			saveState(LocalStorageKey.TODO, state.todo)
 			break
-
-		case ActionsEnum.UPDATE_TODO:
-			const { key, content } = action.payload
-			state.todo[key] = content
+		}
+		case ActionsEnum.ADD_ITEM: {
+			const { listID } = action.payload
+			state.todo[listID][nanoid()] = ""
+			saveState(LocalStorageKey.TODO, state.todo)
 			break
+		}
 
-		case ActionsEnum.UPDATE_WEATHER:
+		case ActionsEnum.DEL_ITEM: {
+			const { listID, itemID } = action.payload
+			delete state.todo[listID][itemID]
+			saveState(LocalStorageKey.TODO, state.todo)
+			break
+		}
+
+		case ActionsEnum.UPDATE_ITEM: {
+			const { listID, itemID, content } = action.payload
+			state.todo[listID][itemID] = content
+			saveState(LocalStorageKey.TODO, state.todo)
+			break
+		}
+
+		case ActionsEnum.UPDATE_WEATHER: {
 			try {
 				// https://open-meteo.com/en/docs#api-documentation
 				const response = await axios.get(
@@ -117,20 +150,20 @@ async function reducer(state = defaultState, action: GlobalAction) {
 				state.weatherData = response.data as unknown as WeatherData
 			} catch (error) {}
 			break
+		}
 
-		case ActionsEnum.UPDATE_PATHNAME:
+		case ActionsEnum.UPDATE_PATHNAME: {
 			try {
 				state.pageTitle = (pathnameToTitle as any)[action.payload]
 			} catch (error) {
 				state.pageTitle = ""
 			}
 			break
+		}
 
 		default:
 			break
 	}
-
-	saveToLocalStorage(state.todo)
 
 	return { ...state }
 }
