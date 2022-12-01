@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { useDebouncedCallback } from "use-debounce"
-import { ActionsEnum, globalContext } from "../../globalContext"
+import { ActionsEnum, globalContext, itemID, listID } from "../../globalContext"
 import tw from "twin.macro"
 
 import { faX } from "@fortawesome/free-solid-svg-icons"
@@ -17,24 +17,24 @@ const RemoveItemButton = tw.button`
 	hover:opacity-80
 	active:opacity-100`
 
-type ItemProps = {
-	todoKey: string
-	content: string
+interface Props {
+	listID: listID
+	itemID: itemID
 }
 
-function ToDoItem({ todoKey: key, content }: ItemProps) {
-	const { dispatch } = useContext(globalContext)
+function ToDoItem({ listID, itemID }: Props) {
+	const { globalState, dispatch } = useContext(globalContext)
 	const debounced = useDebouncedCallback((value) => {
 		dispatch({
-			type: ActionsEnum.UPDATE_TODO,
-			payload: { key, content: value },
+			type: ActionsEnum.UPDATE_ITEM,
+			payload: { listID, itemID, content: value },
 		})
 	}, 500)
 
 	return (
 		<ToDoItemComponent>
 			<TextArea
-				defaultValue={content}
+				defaultValue={globalState.todo[listID][itemID]}
 				rows={1}
 				onChange={(e) => debounced(e.target.value)}
 			/>
@@ -42,8 +42,8 @@ function ToDoItem({ todoKey: key, content }: ItemProps) {
 			<RemoveItemButton
 				onClick={() => {
 					dispatch({
-						type: ActionsEnum.REMOVE_TODO,
-						payload: key,
+						type: ActionsEnum.DEL_ITEM,
+						payload: { listID, itemID },
 					})
 				}}
 			>
