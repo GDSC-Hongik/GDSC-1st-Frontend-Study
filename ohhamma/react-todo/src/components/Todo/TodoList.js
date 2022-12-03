@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 import styled from 'styled-components';
+import { useTodoState } from './TodoContext';
 
 const Wrapper = styled.div``;
 
@@ -25,7 +26,9 @@ const List = styled.ul`
   }
 `;
 
-const TodoList = ({ todos, onDel, onToggle }) => {
+const TodoList = () => {
+  const todos = useTodoState();
+
   return (
     <Wrapper>
       <List>
@@ -33,8 +36,6 @@ const TodoList = ({ todos, onDel, onToggle }) => {
           <TodoItem
             key={todo.id}
             todo={todo}
-            onDel={onDel}
-            onToggle={onToggle}
           />
         ))}
       </List>

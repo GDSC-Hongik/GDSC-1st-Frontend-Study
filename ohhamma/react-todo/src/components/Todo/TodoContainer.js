@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   width: 480px;
   height: 700px;
   
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 50px;
   margin: 96px 30px 32px auto;
 `;

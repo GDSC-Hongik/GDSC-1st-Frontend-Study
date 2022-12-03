@@ -31,8 +31,8 @@ const Input = styled.input`
 }
 `;
 
-const TodoForm = ({ onAdd }) => {
-  const [text, onChange, onSubmit] = useInput('', onAdd);
+const TodoForm = () => {
+  const [text, onChange, onSubmit] = useInput('');
 
   return (
     <Wrapper>

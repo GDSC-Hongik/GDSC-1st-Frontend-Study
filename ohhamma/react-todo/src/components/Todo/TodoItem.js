@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactComponent as CheckSolid } from '../../assets/check-solid.svg';
 import { ReactComponent as XSolid } from '../../assets/x-solid.svg';
 import styled, { css } from 'styled-components';
+import { useTodoDispatch } from './TodoContext';
 
 const Wrapper = styled.div``;
 
@@ -45,8 +46,8 @@ const DoneButton = styled(CheckSolid)`
   fill: ${props => props.done === 'on' ? 'rgba(255, 99, 71, 0.6)' : 'rgba(154, 205, 50, 0.6)'};
   &:hover {
     cursor: pointer;
-    width: 22px;
-    height: 22px;
+    width: 21.5px;
+    height: 21.5px;
   }
 `;
 
@@ -54,13 +55,14 @@ const DelButton = styled(XSolid)`
   margin-top: 1px;
   &:hover {
     cursor: pointer;
-    width: 19px;
-    height: 19px;
+    width: 18.5px;
+    height: 18.5px;
   }
 `;
 
-const TodoItem = ({ todo, onDel, onToggle }) => {
+const TodoItem = ({ todo }) => {
   const {id, text, done} = todo;
+  const dispatch = useTodoDispatch();
 
   return (
     <Wrapper>
@@ -68,12 +70,16 @@ const TodoItem = ({ todo, onDel, onToggle }) => {
         <TodoText>{text}</TodoText>
         <Buttons>
           <DoneButton
-            onClick={() => onToggle(id)}
+            onClick={() => dispatch(
+              { type: 'TOGGLE', id: id }
+            )}
             width={20} height={20}
             done={done ? 'on' : 'off'}
-            fill="rgba(154, 205, 50, 0.6)" />
+            fill="rgba(255, 255, 255, 0.15)" />
           <DelButton
-            onClick={() => onDel(id)}
+            onClick={() => dispatch(
+              { type: 'DELETE', id: id }
+            )}
             width={17} height={17}
             fill="rgba(255, 255, 255, 0.2)" />
           </Buttons>

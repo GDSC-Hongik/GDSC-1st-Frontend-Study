@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import useWeather from '../../hooks/useWeather';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin: 96px auto 0px 30px;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 25px;
   width: 230px;
   height: 140px;
@@ -50,40 +50,11 @@ const Icon = styled.img`
 `;
 
 const WeatherBox = () => {
-  const cityName = "Seoul";
-  const countryName = "KR";
-  //const lang = "kr";
-  const apiKey = "3b96fc00a042714fb70503d9ab39bdba";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-  const [weather, setWeather] = useState({
-    temp : 0,
-    condition : "",
-  });
-  const [icon, setIcon] = useState("");
-
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(url);
-      setWeather({ 
-        temp: Math.round(res.data.main.temp),
-        condition: res.data.weather[0].main
-      });
-      setIcon(
-        `http://openweathermap.com/img/wn/${res.data.weather[0].icon}.png`
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [])
-
+  const [weather, icon, city, country] = useWeather();
 
   return (
     <Wrapper>
-      <Header>{cityName}, {countryName}</Header>
+      <Header>{city}, {country}</Header>
       <Body>
         <Icon src={icon}/>
         <Text>
