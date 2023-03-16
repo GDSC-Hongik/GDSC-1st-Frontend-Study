@@ -8,10 +8,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import useTodo from '../hooks/useTodo';
 import { useRecoilState } from 'recoil';
 import { todoState, todoId, dateState } from '../stores/Atom'
+import styled from 'styled-components';
 import {
   MyDatePicker, DiaryBtnCSS, DateSetting
 } from '../components/styledComponent';
-
+import {BiLeftArrow , BiRightArrow} from 'react-icons/bi';
 
 const TodoHome = () => {
   const [date, setDate] = useRecoilState(dateState);
@@ -28,69 +29,80 @@ const TodoHome = () => {
   }
 }
 
+  const nextDay = () => {
+    let nextDay = date.getDate() + 1;
+    date.setDate(nextDay)
+    const NewDay = new Date(date);
+    setDate(NewDay);
+  }
+
+  const beforeDay = () =>{
+    let beforeDay = date.getDate() - 1 ;
+    date.setDate(beforeDay)
+    const NewDay = new Date(date);
+    setDate(NewDay)
+  }
+
   useEffect(() => {
     loadData();
-    },[])
-
-    console.log(date);
-  /*사용자에게 입력받은 값 저장*/
- // var todayDate = new Date();
-  //var todayDateValue = todayDate.toLocaleString().slice(0,13).replace(/ /g,"");
-  //var settingDate = date.toLocaleDateString().replace(/ /g,"");
+    }, [date])
 
     return (
-        <>
-            <TodoTemplate>
-              <DateSetting>
-                <span>날짜 설정하기</span>
-                <MyDatePicker 
-                    dateFormat = "yyyy/MM/dd" 
-                    selected = { date } 
-                    onChange = {(date) => setDate(date)}
-                    locale = { ko } 
-                    placeholderText='Weeks start on Monday' />
-                </DateSetting>
-                <TodoInsert onInsert = {todoInsert}/>
-                <TodoList  onRemove={todoRemove} onToggle ={todoToggle}/> 
-                <DiaryBtnCSS to = {'/diary'}>일기 작성하기</DiaryBtnCSS>
-            </TodoTemplate>
-        </>
+      <>
+        <BeforeDay onClick = {beforeDay}> 
+          <BiLeftArrow size = "2rem"/>
+        </BeforeDay>
+        <NextDay onClick = {nextDay}>
+          <BiRightArrow size = "2rem"/>
+        </NextDay>
+          <DiaryBox> 
+              <TodoTemplate>
+                <DateSetting>
+                  <span>날짜 설정하기</span>
+                  <MyDatePicker 
+                      dateFormat = "yyyy/MM/dd" 
+                      selected = { date } 
+                      onChange = {(date) => setDate(date)}
+                      locale = { ko } 
+                      placeholderText='Weeks start on Monday' />
+                  </DateSetting>
+                  <TodoInsert onInsert = {todoInsert}/>
+                  <TodoList  onRemove={todoRemove} onToggle ={todoToggle}/> 
+                  <DiaryBtnCSS to = {'/diary'}>일기 작성하기</DiaryBtnCSS>
+              </TodoTemplate>
+            </DiaryBox>
+      </>
     );
 };
 
+const DiaryBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+
+const BeforeDay = styled.button`
+    position : absolute;
+    color : rgba(255, 255, 255, 0.4);
+    background-color : transparent;
+    border : none;
+    top : 50%;
+    left: 0%;
+    z-index: 100;
+`;
+
+const NextDay = styled.button`
+    position : absolute;
+    color : rgba(255, 255, 255, 0.4);
+    background-color : transparent;
+    border : none;
+    top : 50%;
+    right: 0%;
+    z-index: 9999;
+`;
+
+
+
+
 export default TodoHome;
-
-/*todos = {todos} todoList에 props 넘겨주지 않아씀! */
-/*
-  const onInsert = useCallback( 
-    (text, checked) => {
-      const newtodo ={
-        id : nextId.current,
-        text : text,
-        checked : checked,
-      };
-      nextId.current++;
-      setTodos(todos => todos.concat(newtodo));
-      localStorage.setItem("TODO", JSON.stringify([...todos, newtodo]));
-    },[todos]
-  );
-
-
-    const onRemove = useCallback(
-        id => {
-          const deletedItem = todos.filter(todo => todo.id !== id);
-          setTodos(deletedItem);
-          localStorage.setItem("TODO",JSON.stringify(deletedItem));
-        },
-        [todos],
-      );
-    
-      const onToggle = useCallback (id => {
-          const toggledItem = todos.map(todo => 
-            todo.id === id ? { ...todo, checked : !todo.checked } : todo)
-          setTodos(toggledItem);
-          localStorage.setItem("TODO",JSON.stringify(toggledItem));
-        },
-        [todos],
-      );
-      */

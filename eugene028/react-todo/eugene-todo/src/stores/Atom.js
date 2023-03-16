@@ -20,7 +20,18 @@ export const diaryState = atom({
     default : [],
 })
 
+export const diaryTitle = atom({
+    key : "diaryTitle",
+    default : "제목을 입력해주세요",
+})
+
+
 export const diaryId = atom({
     key : "diaryId",
     default : 0,
+})
+
+export const Editcheck = atom({
+    key : "editcheck",
+    default : true,
 })
