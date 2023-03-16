@@ -1,7 +1,7 @@
 import React from 'react';
+import styled from'styled-components';
 
 import {
-    TodoTemplateCSS,
     AppTitle,
     Content,
 } from './styledComponent';
@@ -14,5 +14,11 @@ const TodoTemplate = ({children}) => {
         </TodoTemplateCSS>
     );
 };
+
+const TodoTemplateCSS = styled.div` 
+    width : 512px;
+    margin-top : 8rem;
+    position: relative;
+`;
 
 export default React.memo(TodoTemplate);

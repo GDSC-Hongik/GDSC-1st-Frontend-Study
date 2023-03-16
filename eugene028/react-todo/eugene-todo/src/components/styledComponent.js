@@ -15,20 +15,6 @@ export const DateSetting = styled.div`
     }
 `
 //Diary.js
-
-export const DiaryTop = styled.div`
-    h4{
-        margin : 2px;
-        font-size : 15px;
-        display : inline;
-    }
-    .weatherIcon
-    {
-        margin-right : 2rem;
-        float : right;
-    }
-    margin : 2px;
-`
 export  const DiaryBtnCSS = styled(NavLink)`
     width : 50%;
     border : none;
@@ -47,7 +33,7 @@ export  const DiaryBtnCSS = styled(NavLink)`
     cursor : pointer;
 `;
 
-export const TextArea = styled.input`
+export const TextArea = styled.textarea`
     display : flex;
     width : 90%;
     height : 250px;
@@ -145,13 +131,6 @@ export const TodoListItemCSS = styled.div`
 `;
 
 //TodoTemplate.js
-export const TodoTemplateCSS = styled.div` 
-    width : 512px;
-    margin-left : auto;
-    margin-right : auto;
-    margin-top : 6rem;
-    overflow : hidden;
-`;
 
 export const AppTitle = styled.div`
     font-weight: 500;

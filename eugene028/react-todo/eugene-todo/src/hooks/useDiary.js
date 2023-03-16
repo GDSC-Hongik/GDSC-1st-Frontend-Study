@@ -1,9 +1,10 @@
 import { useRecoilState } from 'recoil';
-import { diaryState, diaryId } from '../stores/Atom'
+import { diaryState, diaryId, diaryTitle } from '../stores/Atom'
 
 const useDiary = () => {
     const [diary, setDiary] = useRecoilState(diaryState);
     const [id, setId] = useRecoilState(diaryId);
+    const [title, setTitle] = useRecoilState(diaryTitle);
 
   const diaryInsert = (text, day, month, year) => {
       const newdiary ={
@@ -21,6 +22,7 @@ const useDiary = () => {
 const diaryRemove = id => {
       const deletedItem = diary.filter(diary => diary.id !== id);
       setDiary(deletedItem);
+      setTitle('제목을 입력해주세요');
       localStorage.setItem("DIARY",JSON.stringify(deletedItem));
   }
 
